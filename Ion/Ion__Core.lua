@@ -73,8 +73,8 @@ IonGDB = {
 	sbars = {},
 	sbtns = {},
 
-	draenorbars = {},
-	draenorbtns = {},
+	zoneabilitybars = {},
+	zoneabilitybtns = {},
 
 	buttonLoc = {-0.85, -111.45},
 	buttonRadius = 87.5,
@@ -84,17 +84,18 @@ IonGDB = {
 	snapToTol = 28,
 
 	mainbar = false,
-	draenorbar = false,
+	zoneabilitybar = false,
 	vehicle = false,
 
 	firstRun = true,
 	xbarFirstRun = true,
 	sbarFirstRun = true,
-	draenorbarFirstRun = true,
+	zoneabilitybarFirstRun = true,
 
 	betaWarning = true,
 
 	animate = true,
+	showmmb = true,
 }
 
 --CharacterDB?
@@ -108,8 +109,8 @@ IonCDB = {
 	sbars = {},
 	sbtns = {},
 
-	draenorbars = {},
-	draenorbtns = {},
+	zoneabilitybars = {},
+	zoneabilitybtns = {},
 
 	selfCast = false,
 	focusCast = false,
@@ -267,6 +268,15 @@ local options = {
 					get = function() return IonGDB.mainbar end,
 					width = "full",
 				},
+				MMbutton = {
+					order = 2,
+					name = "Display Minimap Button",
+					desc = "Toggles the minimap button.",
+					type = "toggle",
+					set =  function() ION:toggleMMB() end,
+					get = function() return IonGDB.showmmb end,
+					width = "full"
+				},
 				--[[
 				DraenorBar = {
 					order = 2,
@@ -418,8 +428,8 @@ local defaults = {
 			sbars = {},
 			sbtns = {},
 
-			draenorbars = {},
-			draenorbtns = {},
+			zoneabilitybars = {},
+			zoneabilitybtns = {},
 
 			buttonLoc = {-0.85, -111.45},
 			buttonRadius = 87.5,
@@ -429,13 +439,13 @@ local defaults = {
 			snapToTol = 28,
 
 			mainbar = false,
-			draenorbar = true,
+			zoneabilitybar = true,
 			vehicle = false,
 
 			firstRun = true,
 			xbarFirstRun = true,
 			sbarFirstRun = true,
-			draenorbarFirstRun = true,
+			zoneabilitybarFirstRun = true,
 
 			betaWarning = true,
 
@@ -452,8 +462,8 @@ local defaults = {
 			sbars = {},
 			sbtns = {},
 
-			draenorbars = {},
-			draenorbtns = {},
+			zoneabilitybars = {},
+			zoneabilitybtns = {},
 
 			selfCast = false,
 			focusCast = false,
@@ -548,8 +558,9 @@ local slashFunctions = {
 	[44] = "BlizzBar",
 	[45] = "",
 	[46] = "Animate",
-	--[47] = "DraenorBar",
-	[48] = "Debuger",
+	[47] = "MoveSpecButtons",
+	--[48] = "Debuger",
+	--[50] = "MoveSpecButton",
 }
 
 
@@ -1416,11 +1427,9 @@ end
 
 
 function ION:MinimapButton_OnHide(minimap)
-
 	minimap:UnlockHighlight()
 	IonMinimapButtonDragFrame:Hide()
 end
-
 
 function ION:MinimapButton_OnEnter(minimap)
 	GameTooltip_SetDefaultAnchor(GameTooltip, minimap)
@@ -1459,6 +1468,14 @@ function ION:MinimapMenuClose()
 	IonMinimapButton.popup:Hide()
 end
 
+function ION:toggleMMB()
+	if IonGDB.showmmb then
+		IonMinimapButton:Hide()
+	else
+		IonMinimapButton:Show()
+	end
+	IonGDB.showmmb = not IonGDB.showmmb
+end
 
 function ION.SubFramePlainBackdrop_OnLoad(self)
 	self:SetBackdrop({
@@ -1716,6 +1733,48 @@ function ION:Animate()
 		GDB.animate = true
 	end
 
+end
+
+
+local function is_valid_spec_id(id, num_specs)
+	return id and id > 0 and id <= num_specs
+end
+
+
+local function get_profile()
+	local char_name = UnitName("player")
+	local realm_name = GetRealmName()
+	local char_and_realm_name = string.format("%s - %s", char_name, realm_name)
+
+	local profile_key = _G.IonProfilesDB.profileKeys[char_and_realm_name]
+	local profile = _G.IonProfilesDB.profiles[profile_key]
+
+	return profile
+end
+
+
+function  ION:MoveSpecButtons(msg)
+	local num_specs = GetNumSpecializations()
+	local spec_1_id, spec_2_id = msg:match("^(%d+)%s+(%d+)")
+	spec_1_id = tonumber(spec_1_id)
+	spec_2_id = tonumber(spec_2_id)
+
+	if (not is_valid_spec_id(spec_1_id, num_specs)
+		or not is_valid_spec_id(spec_2_id, num_specs)) then
+
+		return print(string.format("%s <spec 1 id> <spec 2 id>", "/ion MoveSpecButtons"))
+	end
+
+	local char_db = _G.IonCDB
+	local profile = get_profile(profile_name)
+
+	for idx, val in ipairs(char_db['buttons']) do 
+			val[spec_2_id] = val[spec_1_id]
+		end
+
+	_G.IonCDB = char_db
+	profile.IonCDB = char_db
+	print("Buttons for layout "..spec_1_id.." copied to layout "..spec_2_id)
 end
 
 
@@ -1987,6 +2046,8 @@ function ION:ToggleButtonGrid(show, hide)
 end
 
 
+
+
 function ION:ToggleMainMenu(show, hide)
 	if (not IsAddOnLoaded("Ion-GUI")) then
 		LoadAddOn("Ion-GUI")
@@ -2236,6 +2297,9 @@ local function control_OnEvent(self, event, ...)
 		--Fix for Titan causing the Main Bar to not be hidden
 		if (IsAddOnLoaded("Titan")) then TitanUtils_AddonAdjust("MainMenuBar", true) end
 		ION:ToggleBlizzBar(GDB.mainbar)
+		if not GDB.showmmb then
+			IonMinimapButton:Hide()
+		end
 
 		CDB.fix07312012 = true
 
@@ -2270,7 +2334,7 @@ local function control_OnEvent(self, event, ...)
 
 	elseif ( event == "TOYS_UPDATED" )then
 
-		if not ToyBox or not ToyBox:IsShown() then print("TVS"); ION:UpdateToyData() end
+		if not ToyBox or not ToyBox:IsShown() then ION:UpdateToyData() end
 	end
 
 end
@@ -2417,3 +2481,5 @@ function ION.Debug(...)
 	if frame:IsVisible() then debugger:Display() end
 	--@end-debug@
 end
+
+
