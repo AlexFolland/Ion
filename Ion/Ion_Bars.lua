@@ -937,11 +937,15 @@ function BAR:Update(show, hide)
 
 	if (self.vischanged) then
 
-		handler:SetAttribute("hidestates", self.gdata.hidestates)
+		if not InCombatLockdown() then
+			
+			handler:SetAttribute("hidestates", self.gdata.hidestates)
 
-		driver:UpdateVisibility(self)
+			driver:UpdateVisibility(self)
 
-		self.vischanged = nil
+			self.vischanged = nil
+
+		end
 	end
 
 	if (self.countChanged) then
