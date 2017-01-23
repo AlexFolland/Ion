@@ -677,16 +677,17 @@ function BUTTON:Flyout_UpdateButtons(init)
 					prefix = "/cast "
 
 				elseif (source == "companion") then
-					button.macroshow = ""
-					button.macroicon = petIcons[spell]
+					button.macroshow = spell
+					--button.macroicon = petIcons[spell]
 					button:SetAttribute("prefix", "/summonpet ")
-					button:SetAttribute("showtooltip", "")
-					button.data.macro_Icon = petIcons[spell]
-					button.data.macro_Name = spell
-					button:SetAttribute("macro_Icon", petIcons[spell])
-					button:SetAttribute("macro_Name", spell)
+					--button:SetAttribute("showtooltip", "")
+					button:SetAttribute("showtooltip", "#showtooltip "..button.macroshow.."\n")
+					--button.data.macro_Icon = petIcons[spell]
+					--button.data.macro_Name = spell
+					--button:SetAttribute("macro_Icon", petIcons[spell])
+					--button:SetAttribute("macro_Name", spell)
 					prefix = "/summonpet "
-					pet = spell
+					--pet = spell
 
 				elseif (source == "item") then
 					button.macroshow = spell
@@ -1251,7 +1252,7 @@ local function updateAnchors(self, elapsed)
 			--collectgarbage() not really needed, but some users complain about memory usage and if they go wild in changing
 			--their inventory often and have an item-based flyout then see the huge memory usage spike, they will holler
 			--without this call, the Lua garbage collector takes care of the garbage in short time, but a user watching will see it
-			self:Hide(); collectgarbage()
+			self:Hide(); --collectgarbage()
 		end
 	end
 end

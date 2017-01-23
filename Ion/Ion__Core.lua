@@ -450,6 +450,7 @@ local defaults = {
 			betaWarning = true,
 
 			animate = true,
+			showmmb = true,
 		},
 		IonCDB = {
 
@@ -890,6 +891,7 @@ end
 -- the attribValue for toys will be the toyName, and unsecure stuff can pull
 -- the itemID from toyCache where needed
 function ION:UpdateToyData()
+
 	-- note filter settings
 	local filterCollected = C_ToyBox.GetCollectedShown()
 	local filterUncollected = C_ToyBox.GetUncollectedShown()
@@ -908,7 +910,10 @@ function ION:UpdateToyData()
 	for i=1,C_ToyBox.GetNumFilteredToys() do
 		local itemID = C_ToyBox.GetToyFromIndex(i)
 		local name = GetItemInfo(itemID) or "UNKNOWN"
-		ION.tIndex[name:lower()] = itemID
+		local known = PlayerHasToy(itemID)
+		if known then 
+			ION.tIndex[name:lower()] = itemID
+		end
 	end
 
 	-- restore filters
@@ -923,7 +928,6 @@ end
 --- Compiles a list of battle pets & mounts a player has.  This table is used to refrence macro spell info to generate tooltips and cooldowns.
 ---	If a companion is not displaying its tooltip or cooldown, then the item in the macro probably is not in the database 
 function ION:UpdateCompanionData()
-
 	--_G.C_PetJournal.ClearAllPetSourcesFilter()  
 	--_G.C_PetJournal.ClearAllPetTypesFilter()
 
@@ -935,14 +939,13 @@ function ION:UpdateCompanionData()
 	_G.C_PetJournal.SetAllPetSourcesChecked(true)
 	_G.C_PetJournal.SetAllPetTypesChecked(true)
 	local numpet = select(1, C_PetJournal.GetNumPets())
-	
+
 	for i=1,numpet do
 
 		local petID, speciesID, owned, customName, level, favorite, isRevoked, speciesName, icon, petType, companionID, tooltip, description, isWild, canBattle, isTradeable, isUnique, obtainable = C_PetJournal.GetPetInfoByIndex(i)
 
 		if (petID) then
 			spell = speciesName
-
 			if (spell) then
 				local companionData = SetCompanionData("CRITTER", i, speciesID, speciesName, petID, icon)
 				ION.cIndex[spell:lower()] = companionData
@@ -1469,7 +1472,7 @@ function ION:MinimapMenuClose()
 end
 
 function ION:toggleMMB()
-	if IonGDB.showmmb then
+	if not IonGDB.showmmb then
 		IonMinimapButton:Hide()
 	else
 		IonMinimapButton:Show()
@@ -2015,7 +2018,7 @@ function ION:ToggleBars(show, hide)
 				IonBarEditor:Hide()
 			end
 
-			collectgarbage()
+			--collectgarbage()
 		else
 
 			--ION:ToggleMainMenu(nil, true)
@@ -2303,7 +2306,8 @@ local function control_OnEvent(self, event, ...)
 
 		CDB.fix07312012 = true
 
-		collectgarbage(); PEW = true
+		--collectgarbage(); 
+		PEW = true
 
 		if (GDB.betaWarning ~= "HE1.0") then
 			StaticPopup_Show("ION_BETA_WARNING")
@@ -2320,9 +2324,8 @@ local function control_OnEvent(self, event, ...)
 		updater.elapsed = 0
 		updater:Show()
 
-	elseif (event == "PET_UI_CLOSE" or event == "COMPANION_LEARNED" or event == "COMPANION_UPDATE") then
-		ION:UpdateCompanionData()
-
+	elseif (event == "PET_UI_CLOSE" or event == "COMPANION_LEARNED" or event == "COMPANION_UPDATE" or event =="PET_JOURNAL_LIST_UPDATE") then
+		if not CollectionsJournal or not CollectionsJournal:IsShown() then ION:UpdateCompanionData()end
 	elseif (event == "UNIT_PET" and ... == "player") then
 
 		if (PEW) then
@@ -2359,6 +2362,7 @@ frame:RegisterEvent("CURSOR_UPDATE")
 frame:RegisterEvent("PET_UI_CLOSE")
 frame:RegisterEvent("COMPANION_LEARNED")
 frame:RegisterEvent("COMPANION_UPDATE")
+frame:RegisterEvent("PET_JOURNAL_LIST_UPDATE")
 frame:RegisterEvent("UNIT_LEVEL")
 frame:RegisterEvent("UNIT_PET")
 --Needed to check to hide the garrison button

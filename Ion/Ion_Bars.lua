@@ -501,7 +501,7 @@ function HANDLER:BuildStateMap(bar, remapState)
 		map, remap = (":"):split(states)
 
 		if (remapState == "stance" and ION.class == "ROGUE" and map == "1") then
-			map = "2"
+			--map = "2"
 		end
 
 		if (not homestate) then
@@ -516,6 +516,10 @@ function HANDLER:BuildStateMap(bar, remapState)
 			else
 				statemap = statemap.."["..state..":"..map.."] "..newstate.."; "
 			end
+		end
+
+		if (remapState == "stance" and ION.class == "ROGUE" and map == "1") then
+			statemap = statemap.."[stance:2] stance1"
 		end
 
 	end
@@ -1206,6 +1210,8 @@ function BAR:SetPerimeter()
 
 			local objTop, objBottom, objLeft, objRight = object:GetTop(), object:GetBottom(), object:GetLeft(), object:GetRight()
 			local scale = 1
+
+if not objTop then return end
 
 			self.objectCount = self.objectCount + 1
 
@@ -2078,6 +2084,10 @@ function BAR:SetState(msg, gui, checked, query)
 
 			if (not self.cdata.stance and self.cdata.prowl) then
 				self.cdata.prowl = false
+			end
+
+			if (ION.class == "ROGUE" and self.cdata.stealth) then
+				self.cdata.stealth = false
 			end
 
 			if (self.cdata.stance) then
