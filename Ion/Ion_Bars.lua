@@ -149,7 +149,6 @@ ION.barCDEF = {
 	rightClickTarget = false,
 	mouseOverCast = false,
 	
-
 	custom = false,
 	customRange = false,
 	customNames = false,
@@ -159,7 +158,6 @@ ION.barCDEF = {
 
 local gDef = {
 	[1] = {
-
 		snapTo = false,
 		snapToFrame = false,
 		snapToPoint = false,
@@ -170,7 +168,6 @@ local gDef = {
 	},
 
 	[2] = {
-
 		snapTo = false,
 		snapToFrame = false,
 		snapToPoint = false,
@@ -182,7 +179,6 @@ local gDef = {
 }
 
 local cDef = {
-
 	[1] = {
 		dualSpec = true,
 		vehicle = true,
@@ -191,9 +187,9 @@ local cDef = {
 	},
 
 	[2] = {
-
 	},
 }
+
 
 local function round(num, idp)
 	local mult = 10^(idp or 0)
@@ -393,6 +389,7 @@ local function controlOnUpdate(self, elapsed)
 	end
 end
 
+
 function HANDLER:SetHidden(bar, show, hide)
 
 	for k,v in pairs(bar.vis) do
@@ -430,6 +427,7 @@ function HANDLER:SetAutoHide(bar)
 	end
 end
 
+
 function HANDLER:AddVisibilityDriver(bar, state, conditions)
 
 	if (MBS[state]) then
@@ -450,6 +448,7 @@ function HANDLER:AddVisibilityDriver(bar, state, conditions)
 	end
 end
 
+
 function HANDLER:ClearVisibilityDriver(bar, state)
 
 	UnregisterStateDriver(self, state)
@@ -459,8 +458,8 @@ function HANDLER:ClearVisibilityDriver(bar, state)
 	self:SetAttribute("state-last", "homestate")
 
 	bar.vis[state].registered = false
-
 end
+
 
 function HANDLER:UpdateVisibility(bar)
 
@@ -478,7 +477,6 @@ function HANDLER:UpdateVisibility(bar)
 					self:AddVisibilityDriver(bar, state, "[stance:2/3,stealth] stance8; "..values.states)
 				--elseif (state == "custom" and bar.cdata.custom) then
 					--self:AddVisibilityDriver(bar, state, bar.cdata.custom)
-					--print(bar.cdata.custom)
 				else
 					self:AddVisibilityDriver(bar, state, values.states)
 				end
@@ -517,17 +515,13 @@ function HANDLER:BuildStateMap(bar, remapState)
 				statemap = statemap.."["..state..":"..map.."] "..newstate.."; "
 			end
 		end
-
-		if (remapState == "stance" and ION.class == "ROGUE" and map == "1") then
-			statemap = statemap.."[stance:2] stance1"
-		end
-
 	end
 
 	statemap = gsub(statemap, "; $", "")
 
 	return statemap
 end
+
 
 function HANDLER:AddStates(bar, state, conditions)
 
@@ -547,7 +541,6 @@ function HANDLER:AddStates(bar, state, conditions)
 end
 
 function HANDLER:ClearStates(bar, state)
-
 	local clearState
 
 	if (state ~= "homestate") then
@@ -565,11 +558,10 @@ function HANDLER:ClearStates(bar, state)
 
 	self:SetAttribute("state-current", "homestate")
 	self:SetAttribute("state-last", "homestate")
-
 end
 
-function HANDLER:UpdateStates(bar)
 
+function HANDLER:UpdateStates(bar)
 	for state, values in pairs(MAS) do
 
 		if (bar.cdata[state]) then
@@ -613,7 +605,6 @@ function HANDLER:UpdateStates(bar)
 end
 
 
-
 --This is the macro base that will be used to set state
 local DRIVER_BASE_ACTION = [[
 	local state = self:GetAttribute("state-<MODIFIER>"):match("%a+")
@@ -629,6 +620,7 @@ local DRIVER_BASE_ACTION = [[
 		control:ChildUpdate("<MODIFIER>", self:GetAttribute("activestates"))
 	end
 	]]
+
 
 function BAR:CreateDriver()
 
@@ -654,7 +646,6 @@ function BAR:CreateDriver()
 	driver:SetAllPoints(self)
 
 	self.driver = driver; driver.bar = self
-
 end
 
 
@@ -710,6 +701,7 @@ local HANDLER_BASE_ACTION = [[
 		end
 	end
 	]]
+
 
 function BAR:CreateHandler()
 
@@ -901,8 +893,8 @@ function BAR:CreateHandler()
 
 end
 
-function BAR:CreateWatcher()
 
+function BAR:CreateWatcher()
 	local watcher = CreateFrame("Frame", "IonBarWatcher"..self:GetID(), self.handler, "SecureHandlerStateTemplate")
 
 	setmetatable(watcher, { __index = HANDLER })
@@ -924,8 +916,8 @@ function BAR:CreateWatcher()
 
 end
 
-function BAR:Update(show, hide)
 
+function BAR:Update(show, hide)
 	local handler, driver = self.handler, self.driver
 
 	self.elapsed = 0;
@@ -961,13 +953,9 @@ function BAR:Update(show, hide)
 	end
 
 	handler:SetHidden(self, show, hide)
-
 	handler:SetAutoHide(self)
-
 	self.text:SetText(self.gdata.name)
-
 	handler:SetAlpha(self.gdata.alpha)
-
 	self:SaveData()
 
 	if (not hide and IonBarEditor and IonBarEditor:IsVisible()) then
@@ -975,8 +963,8 @@ function BAR:Update(show, hide)
 	end
 end
 
-function BAR:GetPosition(oFrame)
 
+function BAR:GetPosition(oFrame)
 	local relFrame, point
 
 	if (oFrame) then
@@ -1007,8 +995,8 @@ function BAR:GetPosition(oFrame)
 	return point, x, y
 end
 
-function BAR:SetPosition()
 
+function BAR:SetPosition()
 	if (self.gdata.snapToPoint and self.gdata.snapToFrame) then
 		self:StickToPoint(_G[self.gdata.snapToFrame], self.gdata.snapToPoint, self.gdata.padH, self.gdata.padV)
 	else
@@ -1035,12 +1023,11 @@ function BAR:SetPosition()
 	end
 end
 
-function BAR:SetFauxState(state)
 
+function BAR:SetFauxState(state)
 	local object
 
 	self.objCount = 0
-
 	self.handler:SetAttribute("fauxstate", state)
 
 	for objID in gmatch(self.gdata.objectList, "[^;]+") do
@@ -1057,8 +1044,8 @@ function BAR:SetFauxState(state)
 	end
 end
 
-function BAR:LoadObjects(init)
 
+function BAR:LoadObjects(init)
 	local object, spec
 
 	if (self.cdata.dualSpec) then
@@ -1070,31 +1057,23 @@ function BAR:LoadObjects(init)
 	self.objCount = 0
 
 	for objID in gmatch(self.gdata.objectList, "[^;]+") do
-
 		object = _G[self.objPrefix..objID]
 
 		if (object) then
 			self.objTable[object.objTIndex][2] = 0
-
 			object:SetData(self)
-
 			object:LoadData(spec, self.handler:GetAttribute("activestate"))
-
 			object:SetAux()
-
 			object:SetType(nil, nil, init)
-
 			object:SetGrid()
-
 			self.objCount = self.objCount + 1
-
 			self.countChanged = true
 		end
 	end
 end
 
-function BAR:SetObjectLoc()
 
+function BAR:SetObjectLoc()
 	local width, height, num, count, origCol, x, y, object, lastObj, placed = 0, 0, 0, self.objCount, self.gdata.columns
 	local shape, padH, padV, arcStart, arcLength = self.gdata.shape, self.gdata.padH, self.gdata.padV, self.gdata.arcStart, self.gdata.arcLength
 	local cAdjust, rAdjust, columns, rows = 0.5, 1
@@ -1106,17 +1085,12 @@ function BAR:SetObjectLoc()
 	end
 
 	for objID in gmatch(self.gdata.objectList, "[^;]+") do
-
 		object = _G[self.objPrefix..objID]
 
 		if (object and num < count) then
-
 			object:ClearAllPoints()
-
 			object:SetParent(self.handler)
-
 			object:SetAttribute("lastPos", nil)
-
 			width = object:GetWidth(); height = object:GetHeight()
 
 			if (count > origCol and mod(count, origCol)~=0 and rAdjust == 1) then
@@ -1128,7 +1102,6 @@ function BAR:SetObjectLoc()
 			end
 
 			if (shape == 2) then
-
 				if (not placed) then
 					placed = arcStart
 				end
@@ -1141,25 +1114,18 @@ function BAR:SetObjectLoc()
 				placed = placed - (arcLength/count)
 
 			elseif (shape == 3) then
-
 				if (not placed) then
-
 					placed = arcStart
-
 					object:SetPoint("CENTER", self, "CENTER", 0, 0)
-
 					placed = placed - (arcLength/count)
 
 				else
-
 					x = ((width+padH)*(count/math.pi))*(cos(placed))
 					y = ((width+padV)*(count/math.pi))*(sin(placed))
 
 					object:SetPoint("CENTER", self, "CENTER", x, y)
-
 					placed = placed - (arcLength/(count-1))
 				end
-
 			else
 				if (not placed) then
 					placed = 0
@@ -1169,7 +1135,6 @@ function BAR:SetObjectLoc()
 				y = (height + padV) * (rows-rAdjust)
 
 				object:SetPoint("CENTER", self, "CENTER", x, y)
-
 				placed = placed + 1; cAdjust = cAdjust + 1
 
 				if (placed >= columns*2) then
@@ -1180,11 +1145,8 @@ function BAR:SetObjectLoc()
 			end
 
 			lastObj = object
-
 			num = num + 1
-
 			object:SetAttribute("barPos", num)
-
 			object:SetData(self)
 		end
 	end
@@ -1194,24 +1156,20 @@ function BAR:SetObjectLoc()
 	end
 end
 
+
 function BAR:SetPerimeter()
-
 	local num, count, object = 0, self.objCount
-
 	self.objectCount = 0
-
 	self.top = nil; self.bottom = nil; self.left = nil; self.right = nil
 
 	for objID in gmatch(self.gdata.objectList, "[^;]+") do
-
 		object = _G[self.objPrefix..objID]
 
 		if (object and num < count) then
-
 			local objTop, objBottom, objLeft, objRight = object:GetTop(), object:GetBottom(), object:GetLeft(), object:GetRight()
 			local scale = 1
-
-if not objTop then return end
+--See if this fixes the ranom position error that happens
+		if not objTop then return end
 
 			self.objectCount = self.objectCount + 1
 
@@ -1236,8 +1194,8 @@ if not objTop then return end
 	end
 end
 
-function BAR:SetDefaults(gdefaults, cdefaults)
 
+function BAR:SetDefaults(gdefaults, cdefaults)
 	if (gdefaults) then
 		for k,v in pairs(gdefaults) do
 			self.gdata[k] = v
@@ -1253,8 +1211,8 @@ function BAR:SetDefaults(gdefaults, cdefaults)
 	self:SaveData()
 end
 
-function BAR:SetRemap_Paged()
 
+function BAR:SetRemap_Paged()
 	self.cdata.remap = ""
 
 	for i=1,6 do
@@ -1262,17 +1220,16 @@ function BAR:SetRemap_Paged()
 	end
 
 	self.cdata.remap = gsub(self.cdata.remap, ";$", "")
-
 end
+
 
 local druidForms = { [1066] = true, [40120] = true, [783] = true, [114282] = true } -- aquatic, flight, travel ,treant 
 
-function BAR:SetRemap_Stance()
 
+function BAR:SetRemap_Stance()
 	local start = tonumber(MAS.stance.homestate:match("%d+"))
 
 	if (start) then
-
 		self.cdata.remap = ""
 
 		for i=start,GetNumShapeshiftForms() do
@@ -1288,11 +1245,15 @@ function BAR:SetRemap_Stance()
 				end
 			end
 		end
+
+		if (ION.class == "ROGUE") then
+			self.cdata.remap = self.cdata.remap..";2:2"
+		end
 	end
 end
 
-function BAR:SetSize()
 
+function BAR:SetSize()
 	if (self.right) then
 		self:SetWidth(((self.right-self.left)+5)*(self.gdata.scale))
 		self:SetHeight(((self.top-self.bottom)+5)*(self.gdata.scale))
@@ -1300,31 +1261,28 @@ function BAR:SetSize()
 		self:SetWidth(195)
 		self:SetHeight(36*(self.gdata.scale))
 	end
-
 end
 
-function BAR:ACTIONBAR_SHOWGRID(...)
 
+function BAR:ACTIONBAR_SHOWGRID(...)
 	if (not InCombatLockdown() and self:IsVisible()) then
 		self:Hide(); self.showgrid = true
 	end
 
 end
 
-function BAR:ACTIONBAR_HIDEGRID(...)
 
+function BAR:ACTIONBAR_HIDEGRID(...)
 	if (not InCombatLockdown() and self.showgrid) then
 		self:Show(); self.showgrid = nil
 	end
 
 end
 
+
 function BAR:ACTIVE_TALENT_GROUP_CHANGED(...)
-
 	if (PEW) then
-
 		self.stateschanged = true
-
 		self.vischanged = true
 
 		--if (self.cdata.stance) then
@@ -1337,14 +1295,13 @@ end
 
 
 function BAR:OnEvent(event, ...)
-
 	if (self[event]) then
 		self[event](self, ...)
 	end
 end
 
-function BAR:OnClick(...)
 
+function BAR:OnClick(...)
 	local click, down, newBar = select(1, ...), select(2, ...)
 
 	if (not down) then
@@ -1377,7 +1334,6 @@ function BAR:OnClick(...)
 		end
 
 	elseif (click == "MiddleButton") then
-
 		if (GetMouseFocus() ~= ION.CurrentBar) then
 			newBar = ION:ChangeBar(self)
 		end
@@ -1387,7 +1343,6 @@ function BAR:OnClick(...)
 		end
 
 	elseif (click == "RightButton" and not self.action and not down) then
-
 		self.mousewheelfunc = nil
 
 		if (not IsAddOnLoaded("Ion-GUI")) then
@@ -1403,21 +1358,18 @@ function BAR:OnClick(...)
 		end
 
 	elseif (not down) then
-
 		if (not newBar) then
 			--updateState(self, 1)
 		end
-
 	end
 
 	if (not down and IonBarEditor and IonBarEditor:IsVisible()) then
 		ION:UpdateBarGUI(newBar)
 	end
-
 end
 
-function BAR:OnEnter(...)
 
+function BAR:OnEnter(...)
 	if (self.cdata.conceal) then
 		self:SetBackdropColor(1,0,0,0.6)
 	else
@@ -1427,10 +1379,9 @@ function BAR:OnEnter(...)
 	self.text:Show()
 end
 
+
 function BAR:OnLeave(...)
-
 	if (self ~= ION.CurrentBar) then
-
 		if (self.cdata.conceal) then
 			self:SetBackdropColor(1,0,0,0.4)
 		else
@@ -1443,8 +1394,8 @@ function BAR:OnLeave(...)
 	end
 end
 
-function BAR:OnDragStart(...)
 
+function BAR:OnDragStart(...)
 	ION:ChangeBar(self)
 
 	self:SetFrameStrata(self.gdata.barStrata)
@@ -1460,16 +1411,13 @@ function BAR:OnDragStart(...)
 	self:StartMoving()
 end
 
+
 function BAR:OnDragStop(...)
-
-      local point
-
+	local point
 	self:StopMovingOrSizing()
 
 	for _,bar in pairs(BARIndex) do
-
 		if (not point and self.gdata.snapTo and bar.gdata.snapTo and self ~= bar) then
-
 			point = self:Stick(bar, GDB.snapToTol, self.gdata.padH, self.gdata.padV)
 
 			if (point) then
@@ -1496,20 +1444,18 @@ function BAR:OnDragStop(...)
 	self.isMoving = false
 	self.dragged = true
 	self.elapsed = 0
-
 	self:Update()
-
 end
+
 
 local barStack = {}
 local stackWatch = CreateFrame("Frame", nil, UIParent)
 stackWatch:SetScript("OnUpdate", function(self) self.bar = GetMouseFocus():GetName() if (not BARNameIndex[self.bar]) then wipe(barStack); self:Hide() end end)
 stackWatch:Hide()
 
+
 function BAR:OnKeyDown(key, onupdate)
-
 	if (self.microAdjust) then
-
 		self.keydown = key
 
 		if (not onupdate) then
@@ -1517,9 +1463,7 @@ function BAR:OnKeyDown(key, onupdate)
 		end
 
 		self.gdata.point, self.gdata.x, self.gdata.y = self:GetPosition()
-
 		self:SetUserPlaced(false)
-
 		self:ClearAllPoints()
 
 		if (key == "UP") then
@@ -1536,23 +1480,21 @@ function BAR:OnKeyDown(key, onupdate)
 		end
 
 		self:SetPosition()
-
 		self:SaveData()
 	end
 end
 
+
 function BAR:OnKeyUp(key)
-
 	if (self.microAdjust and not key:find("SHIFT")) then
-
 		self.microAdjust = 1
 		self.keydown = nil
 		self.elapsed = 0
 	end
 end
 
-function BAR:OnMouseWheel(delta)
 
+function BAR:OnMouseWheel(delta)
 	stackWatch:Show()
 
 	IonTooltipScan:SetOwner(UIParent, "ANCHOR_NONE")
@@ -1564,21 +1506,16 @@ function BAR:OnMouseWheel(delta)
 	for k,v in pairs(objects) do
 
 		if (_G[v]:IsObjectType("FontString")) then
-
 			text = _G[v]:GetText()
 
 			if (text and text:find("%p%d+%p")) then
-
 				_, level, text = (" "):split(text)
 
 				if (text and BARNameIndex[text]) then
-
 					level = tonumber(level:match("%d+"))
 
 					if (level and level < 3) then
-
 						added = nil
-
 						bar = BARNameIndex[text]
 
 						for k,v in pairs(barStack) do
@@ -1603,8 +1540,8 @@ function BAR:OnMouseWheel(delta)
 	end
 end
 
-function BAR:OnShow()
 
+function BAR:OnShow()
 	if (self == ION.CurrentBar) then
 
 		if (self.cdata.conceal) then
@@ -1623,14 +1560,12 @@ function BAR:OnShow()
 
 	self.handler:SetAttribute("editmode", true)
 	self.handler:Show()
-
 	self:UpdateObjectGrid(ION.BarsShown)
-
 	self:EnableKeyboard(false)
 end
 
-function BAR:OnHide()
 
+function BAR:OnHide()
 	self.handler:SetAttribute("editmode", nil)
 
 	if (self.handler:GetAttribute("vishide")) then
@@ -1638,13 +1573,11 @@ function BAR:OnHide()
 	end
 
 	self:UpdateObjectGrid()
-
 	self:EnableKeyboard(false)
-
 end
 
-function BAR:Pulse(elapsed)
 
+function BAR:Pulse(elapsed)
 	alphaTimer = alphaTimer + elapsed * 1.5
 
 	if (alphaDir == 1) then
@@ -1670,10 +1603,9 @@ function BAR:Pulse(elapsed)
 	self.pulse = true
 end
 
+
 function BAR:OnUpdate(elapsed)
-
 	if (self.elapsed) then
-
 		self.elapsed = self.elapsed + elapsed
 
 		if (self.elapsed > 10) then
@@ -1681,7 +1613,6 @@ function BAR:OnUpdate(elapsed)
 		end
 
 		if (self.microAdjust and not self.action) then
-
 			self:Pulse(elapsed)
 
 			if (self.keydown and self.elapsed >= 0.5) then
@@ -1708,33 +1639,29 @@ function BAR:OnUpdate(elapsed)
 	end
 end
 
-function BAR:SaveData()
 
+function BAR:SaveData()
 	local id = self:GetID()
 
 	if (self.GDB[id]) then
-
 		for key,value in pairs(self.gdata) do
 			self.GDB[id][key] = value
 		end
-
 	else
 		print("DEBUG: Bad Global Save Data for "..self:GetName().." ?")
 	end
 
 	if (self.CDB[id]) then
-
 		for key,value in pairs(self.cdata) do
 			self.CDB[id][key] = value
 		end
-
 	else
 		print("DEBUG: Bad Character Save Data for "..self:GetName().." ?")
 	end
 end
 
-function BAR:LoadData()
 
+function BAR:LoadData()
 	local id = self:GetID()
 
 	if (not self.GDB[id]) then
@@ -1742,7 +1669,6 @@ function BAR:LoadData()
 	end
 
 	ION:UpdateData(self.GDB[id], ION.barGDEF)
-
 	self.gdata = CopyTable(self.GDB[id])
 
 	if (not self.CDB[id]) then
@@ -1750,21 +1676,18 @@ function BAR:LoadData()
 	end
 
 	ION:UpdateData(self.CDB[id], ION.barCDEF)
-
 	self.cdata = CopyTable(self.CDB[id])
 
 	if (#self.gdata.name < 1) then
 		self.gdata.name = self.barLabel.." "..self:GetID()
 	end
-
 end
 
-function BAR:UpdateObjectData()
 
+function BAR:UpdateObjectData()
 	local object
 
 	for objID in gmatch(self.gdata.objectList, "[^;]+") do
-
 		object = _G[self.objPrefix..objID]
 
 		if (object) then
@@ -1773,12 +1696,11 @@ function BAR:UpdateObjectData()
 	end
 end
 
-function BAR:UpdateObjectGrid(show)
 
+function BAR:UpdateObjectGrid(show)
 	local object
 
 	for objID in gmatch(self.gdata.objectList, "[^;]+") do
-
 		object = _G[self.objPrefix..objID]
 
 		if (object) then
@@ -1787,16 +1709,14 @@ function BAR:UpdateObjectGrid(show)
 	end
 end
 
-function BAR:UpdateObjectSpec()
 
+function BAR:UpdateObjectSpec()
 	local object, spec
 
 	for objID in gmatch(self.gdata.objectList, "[^;]+") do
-
 		object = _G[self.objPrefix..objID]
 
 		if (object) then
-
 			if (self.cdata.dualSpec) then
 				spec = SPEC.cSpec
 			else
@@ -1814,20 +1734,17 @@ function BAR:UpdateObjectSpec()
 	end
 end
 
-function BAR:DeleteBar()
 
+function BAR:DeleteBar()
 	local handler = self.handler
 
 	handler:SetAttribute("state-current", "homestate")
 	handler:SetAttribute("state-last", "homestate")
 	handler:SetAttribute("showstates", "homestate")
-
 	handler:ClearStates(self, "homestate")
 
 	for state, values in pairs(MAS) do
-
 		if (self.cdata[state] and self[state] and self[state].registered) then
-
 			if (state == "custom" and self.cdata.customRange) then
 				local start = tonumber(string.match(self.cdata.customRange, "^%d+"))
 				local stop = tonumber(string.match(self.cdata.customRange, "%d+$"))
@@ -1835,11 +1752,9 @@ function BAR:DeleteBar()
 				if (start and stop) then
 					handler:ClearStates(self, state, start, stop)
 				end
-
 			else
 				handler:ClearStates(self, state, values.rangeStart, values.rangeStop)
 			end
-
 		end
 	end
 
@@ -1877,11 +1792,10 @@ function BAR:DeleteBar()
 	if (IonBarEditor and IonBarEditor:IsVisible()) then
 		ION:UpdateBarGUI()
 	end
-
 end
 
-function BAR:AddObjectToList(object)
 
+function BAR:AddObjectToList(object)
 	if (not self.gdata.objectList or self.gdata.objectList == "") then
 		self.gdata.objectList = tostring(object.id)
 	elseif (self.barReverse) then
@@ -1889,11 +1803,10 @@ function BAR:AddObjectToList(object)
 	else
 		self.gdata.objectList = self.gdata.objectList..";"..object.id
 	end
-
 end
 
-function BAR:AddObjects(num)
 
+function BAR:AddObjects(num)
 	num = tonumber(num)
 
 	if (not num) then
@@ -1901,9 +1814,7 @@ function BAR:AddObjects(num)
 	end
 
 	if (num) then
-
 		for i=1,num do
-
 			local object
 
 			for index,data in ipairs(self.objTable) do
@@ -1924,30 +1835,22 @@ function BAR:AddObjects(num)
 			end
 
 			if (object) then
-
 				object:Show()
-
 				self:AddObjectToList(object)
-
 			end
 		end
 
 		self:LoadObjects()
-
 		self:SetObjectLoc()
-
 		self:SetPerimeter()
-
 		self:SetSize()
-
 		self:Update()
-
 		self:UpdateObjectGrid(ION.BarsShown)
 	end
 end
 
-function BAR:StoreObject(object, storage, objTable)
 
+function BAR:StoreObject(object, storage, objTable)
 	object:ClearAllPoints()
 
 	object.config.scale = 1
@@ -1973,8 +1876,8 @@ function BAR:StoreObject(object, storage, objTable)
 	object:SetParent(storage)
 end
 
-function BAR:RemoveObjectFromList(objID)
 
+function BAR:RemoveObjectFromList(objID)
 	if (self.barReverse) then
 		self.gdata.objectList = (self.gdata.objectList):gsub("^"..objID.."[;]*", "")
 	else
@@ -1983,8 +1886,8 @@ function BAR:RemoveObjectFromList(objID)
 
 end
 
-function BAR:RemoveObjects(num)
 
+function BAR:RemoveObjects(num)
 	if (not self.objStorage) then return end
 
 	if (not num) then
@@ -1992,9 +1895,7 @@ function BAR:RemoveObjects(num)
 	end
 
 	if (num) then
-
 		for i=1,num do
-
 			local objID
 
 			if (self.barReverse) then
@@ -2004,33 +1905,26 @@ function BAR:RemoveObjects(num)
 			end
 
 			if (objID) then
-
 				local object = _G[self.objPrefix..objID]
-
 				if (object) then
-
 					self:StoreObject(object, self.objStorage, self.objTable)
-
 					self:RemoveObjectFromList(objID)
-
 					self.objCount = self.objCount - 1
-
 					self.countChanged = true
 				end
 
 				self:SetObjectLoc()
-
 				self:SetPerimeter()
-
 				self:SetSize()
-
 				self:Update()
 			end
 		end
 	end
 end
 
+
 local statetable = {}
+
 
 function BAR:SetState(msg, gui, checked, query)
 	if (msg) then
@@ -2047,15 +1941,12 @@ function BAR:SetState(msg, gui, checked, query)
 		end
 
 		if (gui) then
-
 			if (checked) then
 				self.cdata[state] = true
 			else
 				self.cdata[state] = false
 			end
-
 		else
-
 			local toggle = self.cdata[state]
 
 			if (toggle) then
@@ -2066,7 +1957,6 @@ function BAR:SetState(msg, gui, checked, query)
 		end
 
 		if (state == "paged") then
-
 			self.cdata.stance = false
 			self.cdata.pet = false
 
@@ -2078,7 +1968,6 @@ function BAR:SetState(msg, gui, checked, query)
 		end
 
 		if (state == "stance") then
-
 			self.cdata.paged = false
 			self.cdata.pet = false
 
@@ -2098,16 +1987,13 @@ function BAR:SetState(msg, gui, checked, query)
 		end
 
 		if (state == "prowl") then
-
 			if (not self.cdata.stance and self.cdata.prowl) then
 				self.cdata.prowl = false
 			end
 		end
 
 		if (state == "custom") then
-
 			if (self.cdata.custom) then
-
 				local count, newstates = 0, ""
 
 				self.cdata.customNames = {}
@@ -2138,7 +2024,6 @@ function BAR:SetState(msg, gui, checked, query)
 					self.cdata.customRange = false
 				end
 				
-
 			else
 				self.cdata.customNames = false
 				self.cdata.customRange = false
@@ -2158,11 +2043,9 @@ function BAR:SetState(msg, gui, checked, query)
 		end
 
 		self.stateschanged = true
-
 		self:Update()
 
 	elseif (not gui) then
-
 		wipe(statetable)
 
 		for k,v in pairs(ION.STATEINDEX) do
@@ -2184,27 +2067,18 @@ function BAR:SetState(msg, gui, checked, query)
 end
 
 function BAR:SetVisibility(msg, gui, checked, query)
-
 	if (msg) then
-
 		wipe(statetable)
-
 		local toggle, index, num = (" "):split(msg)
-
 		toggle = toggle:lower()
 
 		if (toggle and ION.STATEINDEX[toggle]) then
-
 			if (index) then
-
 				num = index:match("%d+")
 
 				if (num) then
-
 					local hidestate = ION.STATEINDEX[toggle]..num
-
 					if (ION.STATES[hidestate]) or (toggle == "custom" and self.cdata.customNames) then
-
 						if (self.gdata.hidestates:find(hidestate)) then
 							self.gdata.hidestates = self.gdata.hidestates:gsub(hidestate..":", "")
 						else
@@ -2215,13 +2089,9 @@ function BAR:SetVisibility(msg, gui, checked, query)
 					end
 
 				elseif (index == L.STATE_SHOW) then
-
 					local hidestate = ION.STATEINDEX[toggle].."%d+"
-
 					self.gdata.hidestates = self.gdata.hidestates:gsub(hidestate..":", "")
-
 				elseif (index == L.STATE_HIDE) then
-
 					local hidestate = ION.STATEINDEX[toggle]
 
 					for state in pairs(ION.STATES) do
@@ -2230,25 +2100,19 @@ function BAR:SetVisibility(msg, gui, checked, query)
 						end
 					end
 				end
-
 			end
 
 			if (not silent) then
-
 				local hidestates, desc, showhide = self.gdata.hidestates
-
 				local highindex = 0
 
 				for state,desc in pairs(ION.STATES) do
-
 					local index = state:match("%d+$")
 
 					if (index) then
-
 						index = tonumber(index)
 
 						if (index and state:find("^"..toggle)) then
-
 							if (hidestates:find(state)) then
 								statetable[index] = desc..":".."Hide:"..state
 							else
@@ -2269,9 +2133,7 @@ function BAR:SetVisibility(msg, gui, checked, query)
 				end
 
 				if (#statetable > 0) then
-
 					print("\n")
-
 					if (statetable[0]) then
 						desc, showhide = (":"):split(statetable[0])
 						print("0: "..desc.." - "..showhide)
@@ -2287,25 +2149,21 @@ function BAR:SetVisibility(msg, gui, checked, query)
 			end
 
 			self.vischanged = true
-
 			self:Update()
 		else
 			ION:PrintStateList()
 		end
-
 	else
-
 	end
 end
 
-function BAR:AutoHideBar(msg, gui, checked, query)
 
+function BAR:AutoHideBar(msg, gui, checked, query)
 	if (query) then
 		return self.gdata.autoHide
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.gdata.autoHide = true
 		else
@@ -2313,7 +2171,6 @@ function BAR:AutoHideBar(msg, gui, checked, query)
 		end
 
 	else
-
 		local toggle = self.gdata.autoHide
 
 		if (toggle) then
@@ -2326,21 +2183,19 @@ function BAR:AutoHideBar(msg, gui, checked, query)
 	self:Update()
 end
 
-function BAR:ShowGridSet(msg, gui, checked, query)
 
+function BAR:ShowGridSet(msg, gui, checked, query)
 	if (query) then
 		return self.gdata.showGrid
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.gdata.showGrid = true
 		else
 			self.gdata.showGrid = false
 		end
 	else
-
 		if (self.gdata.showGrid) then
 			self.gdata.showGrid = false
 		else
@@ -2349,17 +2204,13 @@ function BAR:ShowGridSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:UpdateObjectGrid(ION.BarsShown)
-
 	self:Update()
-
 end
 
+
 local function spellGlowMod(self, msg, gui)
-
 	if (msg:lower() == "default") then
-
 		if (self.cdata.spellGlowDef) then
 			self.cdata.spellGlowDef = false
 		else
@@ -2372,7 +2223,6 @@ local function spellGlowMod(self, msg, gui)
 		end
 
 	elseif (msg:lower() == "alt") then
-
 		if (self.cdata.spellGlowAlt) then
 			self.cdata.spellGlowAlt = false
 		else
@@ -2383,14 +2233,14 @@ local function spellGlowMod(self, msg, gui)
 		if (not self.cdata.spellGlowDef and not self.cdata.spellGlowAlt) then
 			self.cdata.spellGlowDef = true
 		end
+
 	elseif (not gui) then
 		print(L.SPELLGLOWS)
 	end
-
 end
 
-function BAR:SpellGlowSet(msg, gui, checked, query)
 
+function BAR:SpellGlowSet(msg, gui, checked, query)
 	if (query) then
 		if (msg == "default") then
 			return self.cdata.spellGlowDef
@@ -2402,7 +2252,6 @@ function BAR:SpellGlowSet(msg, gui, checked, query)
 	end
 
 	if (gui) then
-
 		if (msg) then
 			spellGlowMod(self, msg, gui)
 		elseif (checked) then
@@ -2412,7 +2261,6 @@ function BAR:SpellGlowSet(msg, gui, checked, query)
 		end
 
 	else
-
 		if (msg) then
 			spellGlowMod(self, msg, gui)
 		elseif (self.cdata.spellGlow) then
@@ -2423,40 +2271,32 @@ function BAR:SpellGlowSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:Update()
-
 end
 
-function BAR:SnapToBar(msg, gui, checked, query)
 
+function BAR:SnapToBar(msg, gui, checked, query)
 	if (query) then
 		return self.gdata.snapTo
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.gdata.snapTo = true
 		else
 			self.gdata.snapTo = false
 		end
 	else
-
 		local toggle = self.gdata.snapTo
 
 		if (toggle) then
-
 			self.gdata.snapTo = false
 			self.gdata.snapToPoint = false
 			self.gdata.snapToFrame = false
 
 			self:SetUserPlaced(true)
-
 			self.gdata.point, self.gdata.x, self.gdata.y = self:GetPosition()
-
 			self:SetPosition()
-
 		else
 			self.gdata.snapTo = true
 		end
@@ -2466,13 +2306,11 @@ function BAR:SnapToBar(msg, gui, checked, query)
 end
 
 function BAR:UpClicksSet(msg, gui, checked, query)
-
 	if (query) then
 		return self.cdata.upClicks
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.cdata.upClicks = true
 		else
@@ -2480,7 +2318,6 @@ function BAR:UpClicksSet(msg, gui, checked, query)
 		end
 
 	else
-
 		if (self.cdata.upClicks) then
 			self.cdata.upClicks = false
 		else
@@ -2489,19 +2326,16 @@ function BAR:UpClicksSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:Update()
-
 end
 
-function BAR:DownClicksSet(msg, gui, checked, query)
 
+function BAR:DownClicksSet(msg, gui, checked, query)
 	if (query) then
 		return self.cdata.downClicks
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.cdata.downClicks = true
 		else
@@ -2509,7 +2343,6 @@ function BAR:DownClicksSet(msg, gui, checked, query)
 		end
 
 	else
-
 		if (self.cdata.downClicks) then
 			self.cdata.downClicks = false
 		else
@@ -2518,25 +2351,22 @@ function BAR:DownClicksSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:Update()
 end
 
-function BAR:DualSpecSet(msg, gui, checked, query)
 
+function BAR:DualSpecSet(msg, gui, checked, query)
 	if (query) then
 		return self.cdata.dualSpec
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.cdata.dualSpec = true
 		else
 			self.cdata.dualSpec = false
 		end
 	else
-
 		local toggle = self.cdata.dualSpec
 
 		if (toggle) then
@@ -2547,12 +2377,11 @@ function BAR:DualSpecSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectSpec()
-
 	self:Update()
 end
 
-function BAR:ConcealBar(msg, gui, checked, query)
 
+function BAR:ConcealBar(msg, gui, checked, query)
 	if (InCombatLockdown()) then return end
 
 	if (query) then
@@ -2560,7 +2389,6 @@ function BAR:ConcealBar(msg, gui, checked, query)
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.cdata.conceal = true
 		else
@@ -2568,7 +2396,6 @@ function BAR:ConcealBar(msg, gui, checked, query)
 		end
 
 	else
-
 		local toggle = self.cdata.conceal
 
 		if (toggle) then
@@ -2579,7 +2406,6 @@ function BAR:ConcealBar(msg, gui, checked, query)
 	end
 
 	if (self.cdata.conceal) then
-
 		if (self.selected) then
 			self:SetBackdropColor(1,0,0,0.6)
 		else
@@ -2596,37 +2422,35 @@ function BAR:ConcealBar(msg, gui, checked, query)
 	self:Update()
 end
 
+
 local function barLockMod(self, msg, gui)
-
 	if (msg:lower() == "alt") then
-
 		if (self.cdata.barLockAlt) then
 			self.cdata.barLockAlt = false
 		else
 			self.cdata.barLockAlt = true
 		end
-	elseif (msg:lower() == "ctrl") then
 
+	elseif (msg:lower() == "ctrl") then
 		if (self.cdata.barLockCtrl) then
 			self.cdata.barLockCtrl = false
 		else
 			self.cdata.barLockCtrl = true
 		end
-	elseif (msg:lower() == "shift") then
 
+	elseif (msg:lower() == "shift") then
 		if (self.cdata.barLockShift) then
 			self.cdata.barLockShift = false
 		else
 			self.cdata.barLockShift = true
 		end
+
 	elseif (not gui) then
 		print(L.BARLOCK_MOD)
 	end
-
 end
 
 function BAR:LockSet(msg, gui, checked, query)
-
 	if (query) then
 		if (msg == "shift") then
 			return self.cdata.barLockShift
@@ -2640,7 +2464,6 @@ function BAR:LockSet(msg, gui, checked, query)
 	end
 
 	if (gui) then
-
 		if (msg) then
 			barLockMod(self, msg, gui)
 		elseif (checked) then
@@ -2662,34 +2485,32 @@ function BAR:LockSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:Update()
 end
 
+
 local function toolTipMod(self, msg, gui)
-
 	if (msg:lower() == "enhanced") then
-
 		if (self.cdata.tooltipsEnhanced) then
 			self.cdata.tooltipsEnhanced = false
 		else
 			self.cdata.tooltipsEnhanced = true
 		end
-	elseif (msg:lower() == "combat") then
 
+	elseif (msg:lower() == "combat") then
 		if (self.cdata.tooltipsCombat) then
 			self.cdata.tooltipsCombat = false
 		else
 			self.cdata.tooltipsCombat = true
 		end
+
 	elseif (not gui) then
 		print(L.TOOLTIPS)
 	end
-
 end
 
-function BAR:ToolTipSet(msg, gui, checked, query)
 
+function BAR:ToolTipSet(msg, gui, checked, query)
 	if (query) then
 		if (msg == "enhanced") then
 			return self.cdata.tooltipsEnhanced
@@ -2701,7 +2522,6 @@ function BAR:ToolTipSet(msg, gui, checked, query)
 	end
 
 	if (gui) then
-
 		if (msg) then
 			toolTipMod(self, msg, gui)
 		elseif (checked) then
@@ -2711,11 +2531,8 @@ function BAR:ToolTipSet(msg, gui, checked, query)
 		end
 
 	else
-
 		if (msg) then
-
 			toolTipMod(self, msg, gui)
-
 		else
 			if (self.cdata.tooltips) then
 				self.cdata.tooltips = false
@@ -2726,22 +2543,19 @@ function BAR:ToolTipSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:Update()
 end
 
+
 function BAR:NameBar(name, gui)
-
 	if (name) then
-
 		self.gdata.name = name
-
 		self:Update()
 	end
 end
 
-function BAR:ShapeBar(shape, gui, query)
 
+function BAR:ShapeBar(shape, gui, query)
 	if (query) then
 		return barShapes[self.gdata.shape]
 	end
@@ -2749,25 +2563,18 @@ function BAR:ShapeBar(shape, gui, query)
 	local shape = tonumber(shape)
 
 	if (shape and barShapes[shape]) then
-
 		self.gdata.shape = shape
-
 		self:SetObjectLoc()
-
 		self:SetPerimeter()
-
 		self:SetSize()
-
 		self:Update()
-
 	elseif (not gui) then
-
 		print(L.BAR_SHAPES)
 	end
 end
 
-function BAR:ColumnsSet(command, gui, query, skipupdate)
 
+function BAR:ColumnsSet(command, gui, query, skipupdate)
 	if (query) then
 		if (self.gdata.columns) then
 			return self.gdata.columns
@@ -2779,13 +2586,9 @@ function BAR:ColumnsSet(command, gui, query, skipupdate)
 	local columns = tonumber(command)
 
 	if (columns and columns > 0) then
-
 		self.gdata.columns = round(columns, 0)
-
 		self:SetObjectLoc()
-
 		self:SetPerimeter()
-
 		self:SetSize()
 
 		if (not skipupdate) then
@@ -2793,13 +2596,9 @@ function BAR:ColumnsSet(command, gui, query, skipupdate)
 		end
 
 	elseif (not columns or columns <= 0) then
-
 		self.gdata.columns = false
-
 		self:SetObjectLoc()
-
 		self:SetPerimeter()
-
 		self:SetSize()
 
 		if (not skipupdate) then
@@ -2807,13 +2606,12 @@ function BAR:ColumnsSet(command, gui, query, skipupdate)
 		end
 
 	elseif (not gui) then
-
 		print(L.BAR_COLUMNS)
 	end
 end
 
-function BAR:ArcStartSet(command, gui, query, skipupdate)
 
+function BAR:ArcStartSet(command, gui, query, skipupdate)
 	if (query) then
 		return self.gdata.arcStart
 	end
@@ -2821,13 +2619,9 @@ function BAR:ArcStartSet(command, gui, query, skipupdate)
 	local start = tonumber(command)
 
 	if (start and start>=0 and start<=359) then
-
 		self.gdata.arcStart = start
-
 		self:SetObjectLoc()
-
 		self:SetPerimeter()
-
 		self:SetSize()
 
 		if (not skipupdate) then
@@ -2835,13 +2629,12 @@ function BAR:ArcStartSet(command, gui, query, skipupdate)
 		end
 
 	elseif (not gui) then
-
 		print(L.BAR_ARCSTART)
 	end
 end
 
-function BAR:ArcLengthSet(command, gui, query, skipupdate)
 
+function BAR:ArcLengthSet(command, gui, query, skipupdate)
 	if (query) then
 		return self.gdata.arcLength
 	end
@@ -2849,13 +2642,9 @@ function BAR:ArcLengthSet(command, gui, query, skipupdate)
 	local length = tonumber(command)
 
 	if (length and length>=0 and length<=359) then
-
 		self.gdata.arcLength = length
-
 		self:SetObjectLoc()
-
 		self:SetPerimeter()
-
 		self:SetSize()
 
 		if (not skipupdate) then
@@ -2863,13 +2652,12 @@ function BAR:ArcLengthSet(command, gui, query, skipupdate)
 		end
 
 	elseif (not gui) then
-
 		print(L.BAR_ARCLENGTH)
 	end
 end
 
-function BAR:PadHSet(command, gui, query, skipupdate)
 
+function BAR:PadHSet(command, gui, query, skipupdate)
 	if (query) then
 		return self.gdata.padH
 	end
@@ -2877,13 +2665,9 @@ function BAR:PadHSet(command, gui, query, skipupdate)
 	local padh = tonumber(command)
 
 	if (padh) then
-
 		self.gdata.padH = round(padh, 1)
-
 		self:SetObjectLoc()
-
 		self:SetPerimeter()
-
 		self:SetSize()
 
 		if (not skipupdate) then
@@ -2891,13 +2675,12 @@ function BAR:PadHSet(command, gui, query, skipupdate)
 		end
 
 	elseif (not gui) then
-
 		print(L.BAR_PADH)
 	end
 end
 
-function BAR:PadVSet(command, gui, query, skipupdate)
 
+function BAR:PadVSet(command, gui, query, skipupdate)
 	if (query) then
 		return self.gdata.padV
 	end
@@ -2905,13 +2688,9 @@ function BAR:PadVSet(command, gui, query, skipupdate)
 	local padv = tonumber(command)
 
 	if (padv) then
-
 		self.gdata.padV = round(padv, 1)
-
 		self:SetObjectLoc()
-
 		self:SetPerimeter()
-
 		self:SetSize()
 
 		if (not skipupdate) then
@@ -2919,13 +2698,12 @@ function BAR:PadVSet(command, gui, query, skipupdate)
 		end
 
 	elseif (not gui) then
-
 		print(L.BAR_PADV)
 	end
 end
 
-function BAR:PadHVSet(command, gui, query, skipupdate)
 
+function BAR:PadHVSet(command, gui, query, skipupdate)
 	if (query) then
 		return "---"
 	end
@@ -2933,14 +2711,11 @@ function BAR:PadHVSet(command, gui, query, skipupdate)
 	local padhv = tonumber(command)
 
 	if (padhv) then
-
 		self.gdata.padH = round(self.gdata.padH + padhv, 1)
 		self.gdata.padV = round(self.gdata.padV + padhv, 1)
 
 		self:SetObjectLoc()
-
 		self:SetPerimeter()
-
 		self:SetSize()
 
 		if (not skipupdate) then
@@ -2948,13 +2723,12 @@ function BAR:PadHVSet(command, gui, query, skipupdate)
 		end
 
 	elseif (not gui) then
-
 		print(L.BAR_PADHV)
 	end
 end
 
-function BAR:ScaleBar(scale, gui, query, skipupdate)
 
+function BAR:ScaleBar(scale, gui, query, skipupdate)
 	if (query) then
 		return self.gdata.scale
 	end
@@ -2962,13 +2736,9 @@ function BAR:ScaleBar(scale, gui, query, skipupdate)
 	scale = tonumber(scale)
 
 	if (scale) then
-
 		self.gdata.scale = round(scale, 2)
-
 		self:SetObjectLoc()
-
 		self:SetPerimeter()
-
 		self:SetSize()
 
 		if (not skipupdate) then
@@ -2977,8 +2747,8 @@ function BAR:ScaleBar(scale, gui, query, skipupdate)
 	end
 end
 
-function BAR:StrataSet(command, gui, query)
 
+function BAR:StrataSet(command, gui, query)
 	if (query) then
 		return self.gdata.objectStrata
 	end
@@ -2986,24 +2756,20 @@ function BAR:StrataSet(command, gui, query)
 	local strata = tonumber(command)
 
 	if (strata and ION.Stratas[strata] and ION.Stratas[strata+1]) then
-
 		self.gdata.barStrata = ION.Stratas[strata+1]
 		self.gdata.objectStrata = ION.Stratas[strata]
 
 		self:SetPosition()
-
 		self:UpdateObjectData()
-
 		self:Update()
 
 	elseif (not gui) then
-
 		print(L.BAR_STRATAS)
 	end
 end
 
-function BAR:AlphaSet(command, gui, query, skipupdate)
 
+function BAR:AlphaSet(command, gui, query, skipupdate)
 	if (query) then
 		return self.gdata.alpha
 	end
@@ -3011,9 +2777,7 @@ function BAR:AlphaSet(command, gui, query, skipupdate)
 	local alpha = tonumber(command)
 
 	if (alpha and alpha>=0 and alpha<=1) then
-
 		self.gdata.alpha = round(alpha, 2)
-
 		self.handler:SetAlpha(self.gdata.alpha)
 
 		if (not skipupdate) then
@@ -3021,16 +2785,12 @@ function BAR:AlphaSet(command, gui, query, skipupdate)
 		end
 
 	elseif (not gui) then
-
 		print(L.BAR_ALPHA)
 	end
-
 end
 
 function BAR:AlphaUpSet(command, gui, query)
-
 	if (query) then
-
 		--temp fix
 		if (self.gdata.alphaUp == "none" or self.gdata.alphaUp == 1) then
 			self.gdata.alphaUp = alphaUps[1]
@@ -3042,24 +2802,19 @@ function BAR:AlphaUpSet(command, gui, query)
 	local alphaUp = tonumber(command)
 
 	if (alphaUp and alphaUps[alphaUp]) then
-
 		self.gdata.alphaUp = alphaUps[alphaUp]
-
 		self:Update()
-
 	elseif (not gui) then
 		local text = ""
 
 		for k,v in ipairs(alphaUps) do
 			text = text.."\n"..k.."="..v
 		end
-
-		print(text)
 	end
 end
 
-function BAR:AlphaUpSpeedSet(command, gui, query, skipupdate)
 
+function BAR:AlphaUpSpeedSet(command, gui, query, skipupdate)
 	if (query) then
 		return self.gdata.fadeSpeed
 	end
@@ -3067,7 +2822,6 @@ function BAR:AlphaUpSpeedSet(command, gui, query, skipupdate)
 	local speed = tonumber(command)
 
 	if (speed) then
-
 		self.gdata.fadeSpeed = round(speed, 2)
 
 		if (self.gdata.fadeSpeed > 1) then
@@ -3083,12 +2837,10 @@ function BAR:AlphaUpSpeedSet(command, gui, query, skipupdate)
 		end
 
 	elseif (not gui) then
-
 	end
 end
 
 function BAR:XAxisSet(command, gui, query, skipupdate)
-
 	if (query) then
 		return self.gdata.x
 	end
@@ -3096,15 +2848,11 @@ function BAR:XAxisSet(command, gui, query, skipupdate)
 	local x = tonumber(command)
 
 	if (x) then
-
 		self.gdata.x = round(x, 2)
-
 		self.gdata.snapTo = false
 		self.gdata.snapToPoint = false
 		self.gdata.snapToFrame = false
-
 		self:SetPosition()
-
 		self.gdata.point, self.gdata.x, self.gdata.y = self:GetPosition()
 
 		if (not gui) then
@@ -3117,14 +2865,12 @@ function BAR:XAxisSet(command, gui, query, skipupdate)
 		end
 
 	elseif (not gui) then
-
 		print(L.BAR_XPOS)
-
 	end
 end
 
-function BAR:YAxisSet(command, gui, query, skipupdate)
 
+function BAR:YAxisSet(command, gui, query, skipupdate)
 	if (query) then
 		return self.gdata.y
 	end
@@ -3132,15 +2878,11 @@ function BAR:YAxisSet(command, gui, query, skipupdate)
 	local y = tonumber(command)
 
 	if (y) then
-
 		self.gdata.y = round(y, 2)
-
 		self.gdata.snapTo = false
 		self.gdata.snapToPoint = false
 		self.gdata.snapToFrame = false
-
 		self:SetPosition()
-
 		self.gdata.point, self.gdata.x, self.gdata.y = self:GetPosition()
 
 		if (not gui) then
@@ -3151,22 +2893,18 @@ function BAR:YAxisSet(command, gui, query, skipupdate)
 		if (not skipupdate) then
 			self:Update()
 		end
-
 	elseif (not gui) then
-
 		print(L.BAR_YPOS)
-
 	end
 end
 
-function BAR:BindTextSet(msg, gui, checked, query)
 
+function BAR:BindTextSet(msg, gui, checked, query)
 	if (query) then
 		return self.cdata.bindText, self.gdata.bindColor
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.cdata.bindText = true
 		else
@@ -3174,7 +2912,6 @@ function BAR:BindTextSet(msg, gui, checked, query)
 		end
 
 	else
-
 		if (self.cdata.bindText) then
 			self.cdata.bindText = false
 		else
@@ -3183,18 +2920,16 @@ function BAR:BindTextSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:Update()
 end
 
-function BAR:MacroTextSet(msg, gui, checked, query)
 
+function BAR:MacroTextSet(msg, gui, checked, query)
 	if (query) then
 		return self.cdata.macroText, self.gdata.macroColor
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.cdata.macroText = true
 		else
@@ -3202,7 +2937,6 @@ function BAR:MacroTextSet(msg, gui, checked, query)
 		end
 
 	else
-
 		if (self.cdata.macroText) then
 			self.cdata.macroText = false
 		else
@@ -3211,19 +2945,16 @@ function BAR:MacroTextSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:Update()
-
 end
 
-function BAR:CountTextSet(msg, gui, checked, query)
 
+function BAR:CountTextSet(msg, gui, checked, query)
 	if (query) then
 		return self.cdata.countText, self.gdata.countColor
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.cdata.countText = true
 		else
@@ -3231,7 +2962,6 @@ function BAR:CountTextSet(msg, gui, checked, query)
 		end
 
 	else
-
 		if (self.cdata.countText) then
 			self.cdata.countText = false
 		else
@@ -3240,18 +2970,16 @@ function BAR:CountTextSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:Update()
 end
 
-function BAR:RangeIndSet(msg, gui, checked, query)
 
+function BAR:RangeIndSet(msg, gui, checked, query)
 	if (query) then
 		return self.cdata.rangeInd, self.gdata.rangecolor
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.cdata.rangeInd = true
 		else
@@ -3259,7 +2987,6 @@ function BAR:RangeIndSet(msg, gui, checked, query)
 		end
 
 	else
-
 		if (self.cdata.rangeInd) then
 			self.cdata.rangeInd = false
 		else
@@ -3268,18 +2995,16 @@ function BAR:RangeIndSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:Update()
 end
 
-function BAR:CDTextSet(msg, gui, checked, query)
 
+function BAR:CDTextSet(msg, gui, checked, query)
 	if (query) then
 		return self.cdata.cdText, self.gdata.cdcolor1, self.gdata.cdcolor2
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.cdata.cdText = true
 		else
@@ -3287,7 +3012,6 @@ function BAR:CDTextSet(msg, gui, checked, query)
 		end
 
 	else
-
 		if (self.cdata.cdText) then
 			self.cdata.cdText = false
 		else
@@ -3296,19 +3020,16 @@ function BAR:CDTextSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:Update()
-
 end
 
-function BAR:CDAlphaSet(msg, gui, checked, query)
 
+function BAR:CDAlphaSet(msg, gui, checked, query)
 	if (query) then
 		return self.cdata.cdAlpha
 	end
 
 	if (gui) then
-
 		if (checked) then
 			self.cdata.cdAlpha = true
 		else
@@ -3316,7 +3037,6 @@ function BAR:CDAlphaSet(msg, gui, checked, query)
 		end
 
 	else
-
 		if (self.cdata.cdAlpha) then
 			self.cdata.cdAlpha = false
 		else
@@ -3325,7 +3045,6 @@ function BAR:CDAlphaSet(msg, gui, checked, query)
 	end
 
 	self:UpdateObjectData()
-
 	self:Update()
 end
 
@@ -3341,8 +3060,8 @@ function BAR:AuraTextSet(msg, gui, checked, query)
 		else
 			self.cdata.auraText = false
 		end
-	else
 
+	else
 		if (self.cdata.auraText) then
 			self.cdata.auraText = false
 		else
@@ -3366,6 +3085,7 @@ function BAR:AuraIndSet(msg, gui, checked, query)
 		else
 			self.cdata.auraInd = false
 		end
+
 	else
 		if (self.cdata.auraInd) then
 			self.cdata.auraInd = false
@@ -3390,17 +3110,13 @@ function BAR:Load()
 end
 
 local function controlOnEvent(self, event, ...)
-
 	if (event == "ADDON_LOADED" and ... == "Ion") then
-
 		GDB, CDB, SPEC = IonGDB, IonCDB, IonSpec
-
 		barGDB = GDB.bars
-
 		barCDB = CDB.bars
 
 		ION:RegisterBarClass("bar", "Action Bar", "Action Button", barGDB, barCDB, BTNIndex, GDB.buttons, "CheckButton", "IonActionButtonTemplate", { __index = BUTTON }, false, false, STORAGE, nil, nil, true)
-
+		
 		ION:RegisterGUIOptions("bar",	{ AUTOHIDE = true,
 							  SHOWGRID = true,
 							  SPELLGLOW = true,
@@ -3424,7 +3140,6 @@ local function controlOnEvent(self, event, ...)
 			local oid, offset = 1, 0
 
 			for id, defaults in ipairs(gDef) do
-
 				ION.RegisteredBarData["bar"].gDef = defaults
 
 				local bar, object = ION:CreateNewBar("bar", id, true)
@@ -3438,11 +3153,11 @@ local function controlOnEvent(self, event, ...)
 
 				offset = offset + 12
 			end
+
 		else
 			for id,data in pairs(barGDB) do
-			
-				if (data ~= nil) then				
-					ION:CreateNewBar("bar", id)					
+				if (data ~= nil) then
+					ION:CreateNewBar("bar", id)
 				end
 			end
 
@@ -3456,23 +3171,24 @@ local function controlOnEvent(self, event, ...)
 		STORAGE:Hide()
 	elseif (event == "PLAYER_LOGIN") then
 		for _,bar in pairs(BARIndex) do
-		
 			if (CDB.firstRun) then			
-				for id, cdefaults in ipairs(cDef) do						
+				for id, cdefaults in ipairs(cDef) do
 					if (id == bar:GetID()) then
 						bar:SetDefaults(nil, cdefaults)
-					end						
-				end					
+					end	
+				end	
 			end		
 			
 			bar:Load()
 		end
+
 	elseif (event == "PLAYER_LOGOUT") then
 	elseif (event == "PLAYER_ENTERING_WORLD" and not PEW) then
 		PEW = true; self.elapsed = 0
 	elseif (event == "PLAYER_REGEN_DISABLED") then
 	end
 end
+
 
 local frame = CreateFrame("Frame", nil, UIParent)
 frame:SetScript("OnEvent", controlOnEvent)
@@ -3487,18 +3203,12 @@ frame.elapsed = 0
 
 function IONBarProfileUpdate()
 		GDB, CDB, SPEC = IonGDB, IonCDB, IonSpec
-
 		barGDB = GDB.bars
-
 		barCDB = CDB.bars
 
-
 		if (GDB.firstRun) then
-
 			local oid, offset = 1, 0
-
 			for id, defaults in ipairs(gDef) do
-
 				ION.RegisteredBarData["bar"].gDef = defaults
 
 				local bar, object = ION:CreateNewBar("bar", id, true)
@@ -3509,15 +3219,13 @@ function IONBarProfileUpdate()
 				end
 
 				ION.RegisteredBarData["bar"].gDef = nil
-
 				offset = offset + 12
 			end
+
 		else
-		
 			for id,data in pairs(barGDB) do
-			
-				if (data ~= nil) then				
-					ION:CreateNewBar("bar", id)					
+				if (data ~= nil) then
+					ION:CreateNewBar("bar", id)
 				end
 			end
 
@@ -3531,14 +3239,13 @@ function IONBarProfileUpdate()
 		STORAGE:Hide()
 
 		for _,bar in pairs(BARIndex) do
-		
-			if (CDB.firstRun) then			
-				for id, cdefaults in ipairs(cDef) do						
+			if (CDB.firstRun) then
+				for id, cdefaults in ipairs(cDef) do	
 					if (id == bar:GetID()) then
 						bar:SetDefaults(nil, cdefaults)
-					end						
-				end					
-			end		
+					end
+				end	
+			end
 			
 			bar:Load()
 		end
@@ -3580,8 +3287,7 @@ function BAR:SetCastingTarget(value, gui, checked, query)
 				self.cdata[value] = true
 			end
 		end
-		--print(value)
-		--print(self.cdata[value])
+
 		--self.stateschanged = true
 		BUTTON:UpdateMacroCastTargets()
 		self:Update()
@@ -3607,6 +3313,3 @@ function BAR:SetCastingTarget(value, gui, checked, query)
 		--]]
 	end
 end
-
-
-

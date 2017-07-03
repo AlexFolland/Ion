@@ -1,8 +1,8 @@
-## Interface: 70100
-## Title: Ion: GUI
+## Interface: 70200
+## Title: Ion: GUI (@project-version@)
 ## Author: Maul
 ## X-Credits-Maintainer: SLOKnightfall
-## Version: Helium  2.0.2 - Legion Release
+## Version: @project-version@
 ## Notes: GUI for Ion
 ## DefaultState: enabled
 ## Dependencies: Ion
