@@ -1,8 +1,8 @@
-## Interface: 70200
+## Interface: 70300
 ## Title: Ion: GUI (@project-version@)
 ## Author: Maul
 ## X-Credits-Maintainer: SLOKnightfall
-## Version: @project-version@
+## Version: Lithium_3.0
 ## Notes: GUI for Ion
 ## DefaultState: enabled
 ## Dependencies: Ion
@@ -10,7 +10,7 @@
 ## SavedVariables: IonGUIGDB
 ## SavedVariablesPerCharacter: IonGUICDB
 ## X-Child-Of: Ion
-## X-Copyright: Copyright© 2006-2014 Connor H. Chenoweth, aka Maul - All rights reserved..
+## X-Copyright: Copyright© 2006-2017 Connor H. Chenoweth, aka Maul - All rights reserved..
 ## X-Email: trinityui@live.com
 
 Libs\LibStub\LibStub.lua

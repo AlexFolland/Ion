@@ -1,9 +1,9 @@
 ## Interface: 70300
-## Title: Ion (@project-version@)
+## Title: Ion
 ## Notes: Ion: Action Bar & Object Mananger
 ## Author: Connor Chenoweth (aka Maul)
 ## X-Credits-Maintainer: SLOKnightfall
-## Version: @project-version@
+## Version: Lithium_3.0
 ## DefaultState: enabled
 ## SavedVariables: IonGDB, IonItemCache, IonProfilesDB
 ## SavedVariablesPerCharacter: IonCDB, IonSpec,
