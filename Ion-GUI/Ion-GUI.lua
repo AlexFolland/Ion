@@ -332,7 +332,7 @@ local function IonPanelTemplates_TabResize(tab, padding, absoluteSize, minWidth,
 
 end
 
--- This builds the string of any custom states in the order that they were originaly entered. 
+-- This builds the string of any custom states in the order that they were originaly entered.
 local function generateCustomStateList(bar)
 	local start = tonumber(string.match(bar.cdata.customRange, "^%d+"))
 	local stop = tonumber(string.match(bar.cdata.customRange, "%d+$"))
@@ -645,7 +645,7 @@ function ION:UpdateBarGUI(newBar)
 --Sets bar custom state options
 		local customStateList = ""
 		if (bar and bar.cdata.customNames) then
-			
+
 customStateList = generateCustomStateList(bar)
 --[[
 for index,state in pairs(bar.cdata.customNames) do
@@ -657,7 +657,7 @@ for index,state in pairs(bar.cdata.customNames) do
 			end
 			--]]
 		end
-		
+
 		barOpt.customstate:SetText(customStateList)
 	end
 --Set visisbility buttons
@@ -770,7 +770,7 @@ function ION:BarEditor_OnLoad(frame)
 				tab:SetChecked(1)
 
 				if (MouseIsOver(cTab)) then
-					PlaySound("igCharacterInfoTab")
+					PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
 				end
 
 				panel:Show()
@@ -1058,7 +1058,7 @@ end
 --- Checks to see if a one only bar type has been deleted.  If so it will allow the bar
 -- to be created
 -- @param bar: type of bar being checked
--- @rerurn allow : (boolean) 
+-- @rerurn allow : (boolean)
 local function MissingBarCheck(bar)
 	local allow = true
 	if (bar == "stancebar" and IonCDB.sbars[1]) or (bar == "extrabar" and IonCDB.xbars[1]) then
@@ -1573,7 +1573,7 @@ function ION:ActionEditor_OnLoad(frame)
 
 			if (tab == cTab) then
 				if (MouseIsOver(cTab) and not tab.selected) then
-					PlaySound("igCharacterInfoTab")
+					PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
 				end
 				panel:Show()
 				tab:SetHeight(33)
@@ -1640,7 +1640,7 @@ function ION:ActionEditor_OnLoad(frame)
 			f:SetWidth(18)
 			f:SetHeight(18)
 			f:SetScript("OnClick", setBarActionState)
-			--Renames Stance for rogues to Stealth as that is what shoudl really be used 
+			--Renames Stance for rogues to Stealth as that is what shoudl really be used
 			if state == "stance" and (ION.class == "ROGUE") then
 				f.text:SetText(L["STEALTH1"])
 			else
@@ -1694,7 +1694,7 @@ function ION:ActionEditor_OnLoad(frame)
 
 			tinsert(barOpt.sec, f)
 
-		elseif state == "custom" then 
+		elseif state == "custom" then
 			f = CreateFrame("CheckButton", nil, frame.custom, "IonOptionsCheckButtonTemplate")
 			f:SetID(index)
 			f:SetWidth(18)
@@ -1825,7 +1825,7 @@ function ION:VisEditor_OnLoad(frame)
 	--f:SetBackdropColor(0.3,0.3,0.3,1)
 	f.text:SetText(L.BAR_VISABLE_STATES)
 	f.selected = true
-	
+
 	ION.SubFrameHoneycombBackdrop_OnLoad(frame)
 end
 
@@ -1914,14 +1914,14 @@ function ION.VisEditorScrollFrameUpdate(frame, tableList, alt)
 			end
 		end
 	end
-	
+
 	table.sort(data)
 
 
 local customStateData = {}
---This adds cusom states to the visability menu,  currently disabled untill I get custom state visability to work 
+--This adds cusom states to the visability menu,  currently disabled untill I get custom state visability to work
 --[[
-	
+
 	if (bar and bar.cdata.customNames) then
 			local i = 0
 			for index,state in pairs(bar.cdata.customNames) do
@@ -1943,7 +1943,7 @@ local customStateData = {}
 
 			text = ION.STATES[data[count]] or data[count]
 
-			if customStateData[data[count]] then 
+			if customStateData[data[count]] then
 			button.msg ="custom "..customStateData[data[count]]
 			button:SetChecked(not bar.gdata.hidestates:find("custom"..customStateData[data[count]]))
 			else
@@ -2121,7 +2121,7 @@ function ION:TargetOptions_OnLoad(frame)
 		self.status = nil
 		wipe(self.localstatus)
 	end
-	
+
 	IonBarEditor.ACEmenu = widget
 	AceGUI:RegisterAsContainer(widget)
 	ION.SubFrameHoneycombBackdrop_OnLoad(frame)
@@ -2144,7 +2144,7 @@ function ION:FlyoutOptions_OnLoad(frame)
 		self.status = nil
 		wipe(self.localstatus)
 	end
-	
+
 	IonButtonEditor.ACEmenu = widget
 	AceGUI:RegisterAsContainer(widget)
 	--ION.SubFrameHoneycombBackdrop_OnLoad(frame)
@@ -2402,7 +2402,7 @@ local function specUpdateIcon(button,state)
 --((button.bar.cdata.dualSpec and specoveride) or 1)
 --data.macro_Icon
 	local texture = "" --"INTERFACE\\ICONS\\INV_MISC_QUESTIONMARK"
-	local buttonSpec = button:GetSpec() 
+	local buttonSpec = button:GetSpec()
 	local data = button.specdata[specoveride][state]
 
 	if (button.bar.cdata.dualSpec and specoveride ~= buttonSpec) then
@@ -2421,7 +2421,7 @@ local function specUpdateIcon(button,state)
 					texture = cIndex[spell].icon
 				elseif (spell) then
 					texture = GetSpellTexture(spell)
-				end 
+				end
 
 		elseif ItemCache[spell] then
 			texture = GetItemIcon("item:"..ItemCache[spell]..":0:0:0:0:0:0:0")
@@ -2485,13 +2485,13 @@ function ION:MacroEditorUpdate()
 
 		if not data then
 			button.specdata[buttonSpec][state] = ION.BUTTON:MACRO_build()
-			
+
 			data = button.specdata[buttonSpec][state]
 			button:UpdateFlyout()
 			button:BuildStateData()
 			button:SetType()
 		end
-	
+
 		if (data) then
 			IBTNE.macroedit.edit:SetText(data.macro_Text)
 			if (not data.macro_Icon) then
@@ -2574,7 +2574,7 @@ local function macroText_OnTextChanged(self)
 		local button = ION.CurrentObject
 		local buttonSpec = ((button.bar.cdata.dualSpec and specoveride) or 1) --specoveride --button:GetSpec()
 		local state = button.bar.handler:GetAttribute("fauxstate")
-		
+
 		if (button and buttonSpec and state) then
 			if button.specdata[buttonSpec][state] then
 				button.specdata[buttonSpec][state].macro_Text = self:GetText()
@@ -2606,7 +2606,7 @@ local function macroButton_Changed(self, button, down)
 	end
 
 	if (object and data) then
-		
+
 		if (self.texture == "INTERFACE\\ICONS\\INV_MISC_QUESTIONMARK") then
 			data.macro_Icon = false
 		else
@@ -2723,7 +2723,7 @@ local function updateIconList()
 			local icon_path
 			if type(icon) == "number" then
 				 icon_path = GetFileName(icon)
-			else 
+			else
 				icon_path = icon
 			end
 			--if (icon:lower():find(search:lower()) or index == 1) then
@@ -2939,7 +2939,7 @@ function ION:ButtonEditor_OnLoad(frame)
 			if (tab == cTab) then
 				tab:SetChecked(1)
 				if (MouseIsOver(cTab)) then
-					PlaySound("igCharacterInfoTab")
+					PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
 				end
 			else
 				tab:SetChecked(nil)
@@ -3239,7 +3239,7 @@ function ION:ButtonEditor_OnLoad(frame)
 	f:Hide()
 	f.elapsed = 0
 	frame.options = f
-	
+
 ---  /flyout <types>:<keys>:<shape>:<attach point>:<relative point>:<columns|radius>:<click|mouse>
 --[[
 	f = CreateFrame("EditBox", nil, frame.options)
@@ -3278,7 +3278,7 @@ function ION:ButtonEditor_OnLoad(frame)
 			if (tab == cTab) then
 				tab:SetChecked(1)
 				if (MouseIsOver(cTab)) then
-					PlaySound("igCharacterInfoTab")
+					PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
 				end
 				panel:Show()
 			else
@@ -3486,14 +3486,14 @@ frame:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
 --- ACE GUI OPTION GET & SET FUnctions
 -- @param self: macro editor frame
 local function settingGetter(info)
-	if Ion.CurrentBar then 
+	if Ion.CurrentBar then
 		return Ion.CurrentBar.cdata[ info[#info]]
 	end
 end
 
 
 local function SetBarCastTarget(value, toggle)
-	if Ion.CurrentBar then 
+	if Ion.CurrentBar then
 		Ion.CurrentBar:SetCastingTarget(value, true, toggle)
 	end
 end

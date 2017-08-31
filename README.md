@@ -1,8 +1,17 @@
 Ion
 ===
 
-Ion is an action bar addon for World of Warcraft.  It's really good, though has some bugs between versions.  This is my fork that has some fixes by other community members such as kballard and Nephyrin applied.
+Ion is a full featured action Bar addon for World of Warcraft: Legion, updated for Patch 7.3
 
-Maul is the original author and SLOKnightfall has been maintaining the addon for quite a while now.  All these people rock.
+Legion Update:
 
-I (AlexFolland) want my 18 MB of incredibly finely-tuned profiles to work in Legion, but they still don't stay for more than one session after being copied via the profile manager.  This is what I seek to solve in my fork.
+We recently broke the Ion repository into multiple repositories, this being the core of the addon. There are four subsidiary addons that add further functionality to the addon, Ion:Bag Bar, Ion:Menu Bar, Ion:Status Bars, and Ion:Pet Bar.
+
+Please make sure you download the afformentioned addons for full functionality.
+
+
+This addon can be downloaded from Curse here:
+https://mods.curse.com/addons/wow/ion
+
+Or WowInterface here:
+http://www.wowinterface.com/downloads/info10636-Ion.html

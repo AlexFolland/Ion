@@ -1,6 +1,9 @@
+Lithium 3.0
+- Bug fixes and library updates
+
  Helium 2.1.1
  - Bug fixes
- 
+
  Helium 2.1
  - Update to WOW 7.2
  - Removed legacy morph spell code

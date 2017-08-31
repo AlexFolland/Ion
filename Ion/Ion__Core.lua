@@ -122,7 +122,7 @@ IonCDB = {
 
 	fix07312012 = false,
 	fix03312014 = false,
-	
+
 	firstRun = true,
 
 	debug = {},
@@ -476,7 +476,7 @@ local defaults = {
 
 			fix07312012 = false,
 			fix03312014 = false,
-			
+
 			firstRun = true,
 
 			debug = {},
@@ -603,7 +603,7 @@ end
 
 
 --- Scans Character Spell Book and creates a table of all known spells.  This table is used to refrence macro spell info to generate tooltips and cooldowns.
----	If a spell is not displaying its tooltip or cooldown, then the spell in the macro probably is not in the database 
+---	If a spell is not displaying its tooltip or cooldown, then the spell in the macro probably is not in the database
 function ION:UpdateSpellIndex()
 	local sIndexMax = 0
 
@@ -670,7 +670,7 @@ function ION:UpdateSpellIndex()
 	end
 
 	-- maybe a temp fix to get the Sunfire spell to show for balance druids
-	--May not be needed for 6.0 recheck 
+	--May not be needed for 6.0 recheck
 	--[[
 	if (ION.class == "DRUID") then
 
@@ -811,7 +811,7 @@ function ION:UpdatePetSpellIndex()
 
 			if (icon and not icons[icon]) then
 				ICONS[#ICONS+1] = icon; icons[icon] = true
-			end			
+			end
 			--if (icon and not icons[icon:upper()]) then
 			--	ICONS[#ICONS+1] = icon:upper(); icons[icon:upper()] = true
 			--end
@@ -888,7 +888,7 @@ function ION:UpdateToyData()
 		local itemID = C_ToyBox.GetToyFromIndex(i)
 		local name = GetItemInfo(itemID) or "UNKNOWN"
 		local known = PlayerHasToy(itemID)
-		if known then 
+		if known then
 			ION.tIndex[name:lower()] = itemID
 		end
 	end
@@ -903,9 +903,9 @@ end
 
 
 --- Compiles a list of battle pets & mounts a player has.  This table is used to refrence macro spell info to generate tooltips and cooldowns.
----	If a companion is not displaying its tooltip or cooldown, then the item in the macro probably is not in the database 
+---	If a companion is not displaying its tooltip or cooldown, then the item in the macro probably is not in the database
 function ION:UpdateCompanionData()
-	--_G.C_PetJournal.ClearAllPetSourcesFilter()  
+	--_G.C_PetJournal.ClearAllPetSourcesFilter()
 	--_G.C_PetJournal.ClearAllPetTypesFilter()
 
 	_G.C_PetJournal.ClearSearchFilter()
@@ -1364,7 +1364,7 @@ function ION:MinimapButton_OnEvent(minimap)
 	minimap.orb:SetPoint("CENTER", minimap, "CENTER", 0.5, 0.5)
 	minimap.orb:SetScale(2)
 	minimap.orb:SetFrameLevel(minimap:GetFrameLevel())
-	minimap.orb.texture:SetVertexColor(1,0,0)
+	minimap.orb.texture:SetVertexColor(0,.54,.54)
 	ION:MinimapButton_OnDragStop(minimap)
 end
 
@@ -1420,7 +1420,7 @@ end
 
 
 function ION:MinimapButton_OnClick(minimap, button)
-	PlaySound("igChatScrollDown")
+	PlaySound(SOUNDKIT.IG_CHAT_SCROLL_DOWN)
 
 	if (InCombatLockdown()) then return end
 
@@ -1740,7 +1740,7 @@ function  ION:MoveSpecButtons(msg)
 	local char_db = _G.IonCDB
 	local profile = get_profile(profile_name)
 
-	for idx, val in ipairs(char_db['buttons']) do 
+	for idx, val in ipairs(char_db['buttons']) do
 			val[spec_2_id] = val[spec_1_id]
 		end
 
@@ -2183,9 +2183,9 @@ local function control_OnEvent(self, event, ...)
 				ION.OpDep = true
 			end
 		end
-		
+
 		if (not fix03312014) then
-		
+
 		end
 
 		GDB = IonGDB; CDB = IonCDB; SPEC = IonSpec
@@ -2275,7 +2275,7 @@ local function control_OnEvent(self, event, ...)
 
 		CDB.fix07312012 = true
 
-		--collectgarbage(); 
+		--collectgarbage();
 		PEW = true
 
 		if (GDB.betaWarning ~= "HE1.0") then
@@ -2390,7 +2390,7 @@ function IonProfile:OnInitialize()
 		IonProfilesDB["Saved"] = CopyTable(IonGDB)
 	end
 
-	if not self.db.char.firstrun then 
+	if not self.db.char.firstrun then
 		self.db.profile["IonCDB"] = CopyTable(IonCDB)
 		self.db.profile["IonGDB"] = CopyTable(IonProfilesDB["Saved"])
 
@@ -2437,5 +2437,3 @@ function ION.Debug(...)
 	if frame:IsVisible() then debugger:Display() end
 	--@end-debug@
 end
-
-
