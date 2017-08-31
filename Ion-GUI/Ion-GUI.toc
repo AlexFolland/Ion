@@ -2,7 +2,7 @@
 ## Title: Ion: GUI
 ## Author: Maul
 ## X-Credits-Maintainer: SLOKnightfall
-## Version: Lithium_3.0
+## Version: Lithium 3.0
 ## Notes: GUI for Ion
 ## DefaultState: enabled
 ## Dependencies: Ion
