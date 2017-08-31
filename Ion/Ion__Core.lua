@@ -1364,7 +1364,7 @@ function ION:MinimapButton_OnEvent(minimap)
 	minimap.orb:SetPoint("CENTER", minimap, "CENTER", 0.5, 0.5)
 	minimap.orb:SetScale(2)
 	minimap.orb:SetFrameLevel(minimap:GetFrameLevel())
-	minimap.orb.texture:SetVertexColor(1,0,0)
+	minimap.orb.texture:SetVertexColor(0,.54,.54)
 	ION:MinimapButton_OnDragStop(minimap)
 end
 

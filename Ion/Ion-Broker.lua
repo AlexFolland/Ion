@@ -73,6 +73,7 @@ local function updatePoint(self, elapsed)
 	end
 end
 
+
 local function createMiniOrb(parent, index, prefix)
 
 	local point = CreateFrame("Frame", prefix..index, parent, "IonMiniOrbTemplate")
@@ -92,6 +93,7 @@ local function createMiniOrb(parent, index, prefix)
 	return point
 end
 
+
 local function DelayedUpdate(self, elapsed)
 
 	self.elapsed = self.elapsed + elapsed
@@ -102,12 +104,12 @@ local function DelayedUpdate(self, elapsed)
 
 		for key,value in pairs(_G) do
 			local obj = _G[key]
-			
+
 			-- following line fix posted by corveroth on Wowinterface Ion comments
 			if (type(obj) == "table" and type(rawget(obj, 0)) == "userdata" and type(obj.GetName) == "function") and (type(obj.IsForbidden) == "function" and not obj:IsForbidden()) then
-			
+
 				local name = obj:GetName()
-				
+
 				if (name and name:find("IonBroker") and not ORB.foundicon) then
 					if (name:find("Icon")) then
 						ORB.anchorFrame = obj; ORB.foundicon = true
@@ -133,7 +135,7 @@ local function DelayedUpdate(self, elapsed)
 			orb:SetScale(1.5)
 			orb:SetFrameStrata(frame:GetFrameStrata())
 			orb:SetFrameLevel(frame:GetFrameLevel()+1)
-			orb.texture:SetVertexColor(1,0,0)
+			orb.texture:SetVertexColor(0,.54,.54)
 
 			ORB.miniorb = orb
 
@@ -165,4 +167,3 @@ ORB:SetScript("OnEvent", function(self, event, ...)
 
 	GDB = IonGDB
 end)
-
