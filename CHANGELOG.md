@@ -1,5 +1,4 @@
-Tag New Release:
-Lithium_3.0
+Lithium 3.0
 - Bug fixes and library updates
 
  Helium 2.1.1
