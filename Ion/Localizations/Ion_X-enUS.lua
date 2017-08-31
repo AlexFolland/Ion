@@ -7,7 +7,7 @@ local AddOnFolderName, private = ...
 -- See http://wow.curseforge.com/addons/ion-status-bars/localization/
 local L = _G.LibStub("AceLocale-3.0"):NewLocale("Ion", "enUS", true)
 
-if not L then return end 
+if not L then return end
 --@localization(locale="enUS", format="lua_additive_table", handle-unlocalized="comment")@
 
 --@do-not-package@
@@ -414,24 +414,21 @@ L.BETA_WARNING = [[Thank you for installing Ion!!!
 
 Ion is currently in a "|cffffff00beta testing|r" state.
 
-Sadly, I was not able to get a release version done for patch 5.0.4. A release version should be ready for the Mists of Pandaria Expansion, though!
+Please be warned that there me minor breakages and instabilities.
 
-What this means is that not all features are in and there may be bugs. But, largely, Ion is in a usable and stable state.
+If you are so inclined, please feel free to report any issues you find on our github page.
 
-Only use Ion right now if you do not mind the occasional bug and not being able to do everything you did with Macaroon =)
-
--Maul]]
+-Maul & SLOKnightfall]]
 
 --NEW
 
-L.HE_UPDATE_WARNING = [[Thank you for updateing Ion!!!
+L.HE_UPDATE_WARNING = [[Thank you for updating Ion!!!
 
-Ion is now in a "|cffffff00release|r" state. Woot!  =)
+As with all updates, please be warned that some functionality may have changed.
 
-A lot of functionality has been added with this version and a few things have changed slightly.
-Please take a moment to look over the change log to famalariaze your self with the changes.
+Please take a moment to look over the changelog to familiarize yourself with the changes.
 
-Hope that you enjoy the addon and thanks for being patient with the wait.
+Enjoy!
 
 -Maul & SLOKnightfall]]
 
