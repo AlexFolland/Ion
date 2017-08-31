@@ -499,9 +499,9 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 		<Scripts>
 			<OnClick>
 				if ( self:GetChecked() ) then
-					PlaySound("igMainMenuOptionCheckBoxOn");
+					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
 				else
-					PlaySound("igMainMenuOptionCheckBoxOff");
+					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
 				end
 			</OnClick>
 			<OnEnter>
@@ -1726,7 +1726,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 						self.parent = self:GetParent()
 					</OnLoad>
 					<OnClick>
-						PlaySound("gsTitleOptionOK")
+						PlaySound(SOUNDKIT.GS_TITLE_OPTION_OK)
 						if (self.parent.frame) then
 
 							if (self.parent.frame.updateFunc) then
@@ -1751,7 +1751,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 						self.parent = self:GetParent()
 					</OnLoad>
 					<OnClick>
-						PlaySound("gsTitleOptionOK")
+						PlaySound(SOUNDKIT.GS_TITLE_OPTION_OK)
 						if (self.parent.frame) then
 							self.parent.frame:Hide()
 						end

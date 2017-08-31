@@ -493,7 +493,7 @@ end
 local function checkCursor(self, button)
 	if (MacroDrag[0]) then
 		if (button == "LeftButton" or button == "RightButton") then
-			MacroDrag[0] = false; SetCursor(nil); PlaySound("igSpellBookSpellIconDrop")
+			MacroDrag[0] = false; SetCursor(nil); PlaySound(SOUNDKIT.IG_ABILITY_ICON_DROP)
 
 			ION:ToggleButtonGrid(nil, true)
 			DeleteMacro("IonTemp")
@@ -727,7 +727,7 @@ function BUTTON:MACRO_SetSpellIcon(spell)
 			--	print(select(i,GetMacroInfo(self.data.macro_Watch)))
 			--end
 
-			_, texture = GetMacroInfo(self.data.macro_Watch)	
+			_, texture = GetMacroInfo(self.data.macro_Watch)
 			--texture = "INTERFACE\\ICONS\\"..texture:match("[%w_]+$"):upper()
 			self.data.macro_Icon = texture
 		elseif (self.data.macro_Equip) then
@@ -1127,7 +1127,7 @@ function BUTTON:MACRO_SetSpellCooldown(spell)
 		self.iconframeaurawatch.duration = 0
 		self.iconframeaurawatch:Hide()
 	end
-		
+
 	if (charges and maxCharges and maxCharges > 0 and charges < maxCharges) then
 		StartChargeCooldown(self, chStart, chDuration);
 	end
@@ -1246,7 +1246,7 @@ function BUTTON:MACRO_UpdateUsableSpell(spell)
 		isUsable, notEnoughMana = IsUsableSpell(spellName)
 	end
 
-	if (spellName == GetSpellInfo(161691):lower()) then 
+	if (spellName == GetSpellInfo(161691):lower()) then
 	end
 
 	if (notEnoughMana) then
@@ -1280,7 +1280,7 @@ end
 
 function BUTTON:MACRO_UpdateUsableItem(item)
 	local isUsable, notEnoughMana = IsUsableItem(item)-- or PlayerHasToy(ItemCache[item])
-	--local isToy = tIndex[item] 
+	--local isToy = tIndex[item]
 	if tIndex[item:lower()] then isUsable = true end
 
 	if (notEnoughMana and self.manacolor) then
@@ -1726,7 +1726,7 @@ function BUTTON:MACRO_PlaceBlizzMacro(action1)
 	if (action1 == 0) then
 		return
 	else
-	
+
 		local name, icon, body = GetMacroInfo(action1)
 
 		if (body) then
@@ -1824,7 +1824,7 @@ function BUTTON:MACRO_PlaceMount(action1, action2, hasAction)
 	if (action1 == 0) then
 		return
 	else
-		--The Summon Random Mount from the Mount Journal 
+		--The Summon Random Mount from the Mount Journal
 		if action1 == 268435455 then
 			self.data.macro_Text = "#autowrite\n/run C_MountJournal.SummonByID(0);"
 			self.data.macro_Auto = "Random Mount;"
@@ -1977,8 +1977,8 @@ function BUTTON:MACRO_PlaceBattlePet(action1, action2, hasAction)
 	end
 end
 
- --Workarround to getting icos to show when ourside of a ion frame.  Bascialy creates a blank 
- --macro, sets its icon to what what picked up, and have the cursor pick up the macro. The temp 
+ --Workarround to getting icos to show when ourside of a ion frame.  Bascialy creates a blank
+ --macro, sets its icon to what what picked up, and have the cursor pick up the macro. The temp
  --macro is then deleted when the item is placed.
 local macroIndex = nil
 local function macroFuss(MacroDrag)
@@ -2060,7 +2060,7 @@ function BUTTON:MACRO_PickUpMacro()
 			macroFuss(MacroDrag)
 
 		end
-			
+
 	end
 end
 
@@ -2098,7 +2098,7 @@ function BUTTON:MACRO_OnReceiveDrag(preclick)
 	else
 
 		if (MacroDrag[0]) then
-			self:MACRO_PlaceMacro(); PlaySound("igSpellBookSpellIconDrop")
+			self:MACRO_PlaceMacro(); PlaySound(SOUNDKIT.IG_ABILITY_ICON_DROP)
 		elseif (cursorType == "spell") then
 			self:MACRO_PlaceSpell(action1, action2, spellID, self:MACRO_HasAction())
 
@@ -2161,7 +2161,7 @@ function BUTTON:MACRO_OnDragStart(button)
 		self:MACRO_PickUpMacro()
 
 		if (MacroDrag[0]) then
-			PlaySound("igSpellBookSpellIconPickup"); self.sound = true
+			PlaySound(SOUNDKIT.IG_ABILITY_ICON_DROP); self.sound = true
 
 			if (MacroDrag[1] ~= self) then
 				self.dragbutton = nil
@@ -2463,7 +2463,7 @@ function BUTTON:MACRO_OnShow(...)
 	self:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
 
 	self:RegisterEvent("PET_JOURNAL_LIST_UPDATE")
-	
+
 end
 
 
@@ -2551,7 +2551,7 @@ function BUTTON:MACRO_OnAttributeChanged(name, value)
 			--This will remove any old button state data from the saved varabiels/memory
 			--for id,data in pairs(self.bar.cdata) do
 			for id,data in pairs(self.statedata) do
-				if (self.bar.cdata[id:match("%a+")]) or (id == "" and self.bar.cdata["custom"])  then 
+				if (self.bar.cdata[id:match("%a+")]) or (id == "" and self.bar.cdata["custom"])  then
 				elseif not self.bar.cdata[id:match("%a+")] then
 					self.statedata[id]= nil
 			end
@@ -3081,7 +3081,7 @@ function BUTTON:SetType(save, kill, init)
 		self:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 		self:RegisterEvent("UPDATE_MACROS")
 		self:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
-		self:RegisterEvent("EQUIPMENT_SETS_CHANGED")		
+		self:RegisterEvent("EQUIPMENT_SETS_CHANGED")
 
 		self:MACRO_UpdateParse()
 
@@ -3372,7 +3372,7 @@ end
 function BUTTON:AutoUpdateMacro(macro)
 	if (GetModifiedClick("SELFCAST") ~= "NONE" ) then
 		macro = macro:gsub("%[@player,mod:%u+%]", "[@player,mod:"..GetModifiedClick("SELFCAST").."]")
-		else 
+		else
 		macro = macro:gsub("%[@player,mod:%u+%]", "")
 	end
 
@@ -3388,7 +3388,7 @@ function BUTTON:AutoUpdateMacro(macro)
 	else
 		macro = macro:gsub("%[@mouseover,mod:%u+%]", "[@mouseover,exists]")
 	end
-	
+
 	--macro = info.macro_Text:gsub("%[.*%]", "")
 	return macro
 end
@@ -3551,7 +3551,7 @@ end
 
 
 --- This will itterate through a set of buttons. For any buttons that have the #autowrite flag in its macro, that
--- macro will then be updated to via AutoWriteMacro to include selected target macro option, or via AutoUpdateMacro 
+-- macro will then be updated to via AutoWriteMacro to include selected target macro option, or via AutoUpdateMacro
 -- to update a current target macro's toggle mofifier.
 -- @param global(boolean): if true will go though all buttons, else it will just update the button set for the current bar
 function BUTTON:UpdateMacroCastTargets(global_update)
@@ -3573,21 +3573,21 @@ function BUTTON:UpdateMacroCastTargets(global_update)
 		local cur_button = button.specdata
 		local macro_update = false
 
-		for i = 1,2 do 
+		for i = 1,2 do
 				for state, info in pairs(cur_button[i]) do
-					if info.macro_Text and info.macro_Text:find("#autowrite\n/cast") then 
+					if info.macro_Text and info.macro_Text:find("#autowrite\n/cast") then
 						local spell, subName = "", ""
 
 						spell = info.macro_Text:gsub("%[.*%]", "")
 						spell, subName = spell:match("#autowrite\n/cast%s*(.+)%((.*)%)")
 
-						if spell then 
-							if global_update then 
+						if spell then
+							if global_update then
 								info.macro_Text = ION.BUTTON:AutoUpdateMacro(info.macro_Text)
 							else
 								info.macro_Text = ION.BUTTON:AutoWriteMacro(spell, subName)
 							end
-							
+
 						end
 						macro_update = true
 					end

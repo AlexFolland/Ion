@@ -298,9 +298,9 @@
 		<Scripts>
 			<OnClick>
 				if ( self:GetChecked() ) then
-					PlaySound("igMainMenuOptionCheckBoxOn");
+					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
 				else
-					PlaySound("igMainMenuOptionCheckBoxOff");
+					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
 				end
 			</OnClick>
 			<OnEnter>
@@ -1110,7 +1110,7 @@
 								self:GetParent().popup:Show()
 							end
 						end
-						PlaySound("igMainMenuOptionCheckBoxOn")
+						PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
 					</OnClick>
 					<OnEnter>
 						self:GetParent():SetBackdropBorderColor(1, 0.82, 0, 1)
@@ -1239,7 +1239,7 @@
 								self:GetParent().popup:Show()
 							end
 						end
-						PlaySound("igMainMenuOptionCheckBoxOn")
+						PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
 					</OnClick>
 				</Scripts>
 				<NormalTexture name="$parentNormalTexture" file="Interface\AddOns\Ion\Images\UI-Panel-ExpandButton-Up"/>
