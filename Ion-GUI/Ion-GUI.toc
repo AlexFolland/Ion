@@ -1,5 +1,5 @@
 ## Interface: 70300
-## Title: Ion: GUI (@project-version@)
+## Title: Ion: GUI
 ## Author: Maul
 ## X-Credits-Maintainer: SLOKnightfall
 ## Version: Lithium_3.0
