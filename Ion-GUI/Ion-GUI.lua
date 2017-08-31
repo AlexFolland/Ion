@@ -2501,7 +2501,7 @@ function ION:MacroEditorUpdate()
 			else
 				IBTNE.macroicon.icon:SetTexture(data.macro_Icon)
 			end
-print(data.macro_Name)
+--print(data.macro_Name)
 			IBTNE.nameedit:SetText(data.macro_Name)
 			IBTNE.noteedit:SetText(data.macro_Note)
 			IBTNE.usenote:SetChecked(data.macro_UseNote)
