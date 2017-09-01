@@ -1,5 +1,5 @@
---Ion, a World of Warcraft® user interface addon.
---Copyright© 2006-2014 Connor H. Chenoweth, aka Maul - All rights reserved.
+--Ion, a World of Warcraftï¿½ user interface addon.
+--Copyrightï¿½ 2006-2014 Connor H. Chenoweth, aka Maul - All rights reserved.
 
 --English spelling validated by Eledryn
 
@@ -11,11 +11,44 @@ L.LINE3 = "TEST"
 L.LINE4 = "TEST"
 L.LINE5 = "TEST"
 
-L.FAQ = "F.A.Q."
-L.FAQ_LONG = "Frequently Asked Questions"
+L.FAQ_TITLE = "F.A.Q."
+L.FAQ_TITLE_LONG = "Frequently Asked Questions"
+L.FAQ = [[
+|cffffd200Ion F.A.Q:|r
 
-L.WHATS_NEW_TITLE = "ION Helium v1.0 Update Changes"
-L.WHATS_NEW_INFO = [[
+Below you will find answers to various questions that may arise as you use Ion. Though please note that not all answers may be found here.
+
+For questions not answered here, please direct them here:
+
+|cff33c7ffhttps://mods.curse.com/addons/wow/ion |r
+
+Further, if you encounter any bugs or missing features, please direct all inquiries here:
+|cff33c7ffhttps://github.com/SLOKnightfall/Ion-Core/issues |r
+
+Thank you again for using Ion.
+
+]]
+
+L.CHANGELOG_TITLE = "Changelog"
+L.CHANGELOG = [[
+|cffffd200Changelog:|r
+
+Ion Lithium v3.0 Update Changes
+
+Bug fixes
+-Fixed PlaySound bug that was introduced in 7.3
+-Fixed issue with Paragon reputations not calculating reputation points correctly
+-Fixed the F.A.Q section to actually work, and work is underway to improve the F.A.Q into a full fledged resource
+-Fixed the Menu sometimes displaying the *?* icon for a single click, and then dissapearing
+
+Updates and Additions
+-Changed the Minimap button to a new color (teal) to represent the new Lithium release of Ion
+-Updated all Ace3 libraries to their latest version to fix the above PlaySound bug.
+
+                         --------------------------------------------------
+
+ION Helium v2.0 Update Changes
+
 Bug Fixes
 -Fixed issue where mounts would not display proper tooltip.
 -Fixed issue where toys would not display proper tooltip.
@@ -31,13 +64,13 @@ Bug Fixes
 
 Updates & Additions
 *Game Menu Bar*
--Updated code to reflect the current default menu bar.  It now will display alerts when there are changes to collections or talents.  
+-Updated code to reflect the current default menu bar.  It now will display alerts when there are changes to collections or talents.
 
 *Action Bar Editor*
 -Added visibility state toggles to editor UI.
 -Added additional bar states to option list. States added were target, indoors, outdoors, mounted, flying, help, harm, resting, swimming.
 -Added ability to enter custom states via the editor UI.  The UI will check to make sure the entered custom state is valid and give an error if it is not.
--Added spell target options to the bars.  Bars can now be set so spells on them have Self, Focus, & Mouse over casting options.  Only spells that contain the #autowrite line in the macro editor will be affected by the settings. 
+-Added spell target options to the bars.  Bars can now be set so spells on them have Self, Focus, & Mouse over casting options.  Only spells that contain the #autowrite line in the macro editor will be affected by the settings.
 
 *Macro Editor*
 -Added a "Reset" button to completely reset the current macro to a fresh state.
@@ -53,13 +86,14 @@ Updates & Additions
 -An option to hide the decorative border of the button has been added under its Bar Editor Options.
 
 *Stance Bar*
--A stance bar has been added to ION for classes/specs that have them. 
+-A stance bar has been added to ION for classes/specs that have them.
 
 *Flyouts*
 -Flyouts have been updated to provide additional functional and to fix some bugs.  Some of the flyout commands have either changed or have been removed.  Please see the Flyout section of the FAQ for full information.]]
 
-L.FAQ_BAR_CONFIGURE_TITLE = "Bar Configiration"
-L.FAQ_BAR_CONFIGURE = [[|cffffd200Bar Editor Mode|r
+L.FAQ_BAR_CONFIGURE_TITLE = "Bar Configuration"
+L.FAQ_BAR_CONFIGURE = [[
+|cffffd200Bar Editor Mode|r
 To enter the Bar Editor, left click on the ION icon or type "/ion config" into the chat window. You will know that the mode is enabled because any hidden bars (IE the Pet or Extra Action Bars) will be displayed and the bars will display a highlight & name on mouse over.
 
 To exit the Bar Editor Mode, left click the ION icon, enter the text line command, or hit the Escape key. Once you leave this mode, any bars set to hidden will disappear once again.
@@ -69,23 +103,24 @@ To open the Bar Configuration Menu, right click on any bar when the Bar Editor M
 ]]
 
 L.FAQ_BAR_CONFIGURE_GENERAL_OPTIONS_TITLE = "General Options"
-L.FAQ_BAR_CONFIGURE_GENERAL_OPTIONS = [[|cffffd200Bar Listing Section|r
+L.FAQ_BAR_CONFIGURE_GENERAL_OPTIONS = [[
+|cffffd200Bar Listing Section|r
 To the far left of the menu there will be a section that lists all of the bars that have been created. Clicking on a name will select that bar and update the menu to display the options for the selected bar.
 
 |cffffd200Bar Name Field|r
 To the right of the Bar Listing, there is a text field that displays the name of the currently selected bar in white. You can rename the bar by clicking in the text field and editing the text. To save any changes press the Enter button when finished.
 
 |cffffd200Bar Display Options|r
-Under the Bar Name Field are the display options for the bar. These options allow you to change how the bar will be displayed. 
+Under the Bar Name Field are the display options for the bar. These options allow you to change how the bar will be displayed.
 
 |cffffd200Auto Hide:|r   When enabled, then the bar will automatically be hidden until you mouse over it again.
 |cffffd200Show Grid:|r  When enabled, empty grid boxes on a bar will be displayed.
 |cffffd200Snap To:|r  When enabled, repositioning a bar close to another bar will cause it to snap to so it will be centered with the other bar.
 |cffffd200Up Clicks:|r  When selected, actions will trigger when the bound key is released.
 |cffffd200Down Clicks:|r  When selected, actions will trigger when the bound key is pressed.
-|cffffd200Dual Spec:|r  When enabled, the bar will automatically swap when your character changes spec. 
+|cffffd200Dual Spec:|r  When enabled, the bar will automatically swap when your character changes spec.
 |cffffd200Hidden:|r  When selected, the bar will be completely hidden. The only way to see the bar is to be in the edit mode. If a bar is set to be hidden, it will have a red tint to it when shown in the edit mode.
-|cffffd200Lock Actions:|r  When enabled, you will no longer be able to drag items from the bars. 
+|cffffd200Lock Actions:|r  When enabled, you will no longer be able to drag items from the bars.
 |cffffd200Unlock on <Shift, Ctrl, Alt> :|r  When Lock Actions is enabled, these options will be shown. Selecting any of these options will allow you to drag items from locked bars when the corresponding key is held.
 |cffffd200Enable Tooltips:|r  When enabled, tooltips will be shown when you mouse over an item on the bar.
 |cffffd200Enhanced:|r  If tooltips are enabled, this option will be displayed. If selected, then enhanced tooltips will be shown if available.
@@ -95,7 +130,7 @@ Under the Bar Name Field are the display options for the bar. These options allo
 To the left of the Bar Display Options is the Bar Layout options. These settings give you the ability to change the layout of the bars.
 
 |cffffd200Scale:|r This sets the scale of the bar. The default value is 1. Changing this to a smaller number will shrink the bar, while increasing the number will make the bar get larger.
-|cffffd200Shape:|r Changes the button layout of the bar. 
+|cffffd200Shape:|r Changes the button layout of the bar.
 |cffffd200Columns:|r Will only be displayed when Linear is selected in the Shape selector. Default is Off. Increasing the count will divide the number of buttons on a bar into the entered number of columns.
 |cffffd200Arc Start:|r  Will only be displayed when one of the Circle options is selected in the Shape selector. Sets the current bar's starting arc location (in degrees).
 |cffffd200Arc Length:|r  Will only be displayed when one of the Circle options is selected in the Shape selector.  Sets the current bar's arc length (in degrees).
@@ -123,10 +158,12 @@ At the bottom left of the option menu is the Delete Current Bar Button. When pre
 
 L.FAQ_BAR_CONFIGURE_BAR_STATES_TITLE = "Bar States"
 
-L.FAQ_BAR_CONFIGURE_BAR_STATES = [[|cffffd200Bar States Selector|r
+L.FAQ_BAR_CONFIGURE_BAR_STATES = [[
+|cffffd200Bar States Selector|r
 The Bar States options allows for custom states and visibility triggers to be added to a bar.  A bar state is what items are currently shown on it. Adding additional states will allow you to automatically change what is displayed when a set state is triggered.  The default state is called the home state.
 
 |cffffd200Preset Action States|r
+
 |cffffd200Paged:|r  When this is selected you can set 6 different pages of buttons.  The ability to switch between the pages is via the game's key binding settings.  The settings are Next & Previous Action Bar found under the Action Bar section.
 |cffffd200Stance:|r  This option is only available if a character has different stances available.  When selected, switching stances will change the displayed buttons.
 |cffffd200Pet:|r  When this is selected you can have the bar change whenever a character gains control of a pet.
@@ -137,12 +174,15 @@ Ion allows you to create your own custom bar states.  This is done by entering t
 Example:  [actionbar:1];[stance:1];[stance3,stealth];[mounted]
 
 |cffffd200Bar Visibility Toggles|r
-These options allow you to customize when a bar should be displayed or hidden.  If a selection has a green mark next to it, then the bar will be shown when that condition is met.  By unselecting the option, the bar will be hidden if the condition is met.]]
+These options allow you to customize when a bar should be displayed or hidden.  If a selection has a green mark next to it, then the bar will be shown when that condition is met.  By unselecting the option, the bar will be hidden if the condition is met.
+]]
 
 
 
 L.FAQ_BAR_CONFIGURE_SPELL_TARGET_TITLE = "Spell Target Options"
-L.FAQ_BAR_CONFIGURE_SPELL_TARGET = [[Spell target options allow you to automatically add certain cast modifiers to spells added to the bar.  Only spells dragged to the bar from the spell book will have these modifiers added.  A way to check to see if a spell will be affected is to look at the button using the macro editor.  If the macro has "#autowrite" at the beginning, then it can use the targeting options. 
+L.FAQ_BAR_CONFIGURE_SPELL_TARGET = [[
+|cffffd200Spell Target Options|r
+Spell target options allow you to automatically add certain cast modifiers to spells added to the bar.  Only spells dragged to the bar from the spell book will have these modifiers added.  A way to check to see if a spell will be affected is to look at the button using the macro editor.  If the macro has "#autowrite" at the beginning, then it can use the targeting options.
 
 |cffffd200Self-Cast by Modifier:|r  When enabled, any spell cast while holding the selected modifier key will try to be cast on your character. Note the selected modifier for this setting is global and will be the same for every bar.  Changing it on one bar will change it for all.
 
@@ -152,14 +192,17 @@ L.FAQ_BAR_CONFIGURE_SPELL_TARGET = [[Spell target options allow you to automatic
 
 |cffffd200Mouse-Over Casting:|r  When enabled, any spell cast while holding the selected modifier key will try to be cast on the mob that the mouse cursor is currently over.  If the modifier for this option is set to "None" then it will always be on.]]
 
-L.FAQ_MACRO_EDITOR = "Macro Editor"
+
 L.FLYOUT = "Flyout"
-L.FLYOUT_FAQ = [[Ion allows for the creation of flyout menus of spells, items or companions. It accomplishes this by adding a new macro command and building the menu based on several options. The following are the instructions on how to go about making a custom flyout menu via the ION Button Macro Editor:
+L.FLYOUT_FAQ = [[
+|cffffd200Flyout Menus|r
+
+Ion allows for the creation of flyout menus of spells, items or companions. It accomplishes this by adding a new macro command and building the menu based on several options. The following are the instructions on how to go about making a custom flyout menu via the ION Button Macro Editor:
 
 Format -  /flyout <type>:<keyword>:<shape>:<flyout anchor point>:<macro button anchor point>:<columns|radius>:<click|mouse>:<show/hide flyout arrow>
 
 
-Types: Use as many comma-delimited types as you want (ex: "spell, item") 
+Types: Use as many comma-delimited types as you want (ex: "spell, item")
 
 Keyword: Use as many comma-delimited keywords as you want (ex: "quest, potion, blah, blah, blah")
     Use ! in front of a keyword to exclude anything containing that keyword (ex: "!hearthstone")
@@ -216,7 +259,7 @@ Points:
 
 
 Colums/Radius:
-    Any number.  For a Linear style this will be how many columns the flyout will have.  For a Circular style, thiw will be how wide the circle will be.  
+    Any number.  For a Linear style this will be how many columns the flyout will have.  For a Circular style, thiw will be how wide the circle will be.
 
 Click/Mouse:
     click: Displays the flyout when the button is clicked.
@@ -242,4 +285,5 @@ This will dislay any companions that are marked as favorite
 This will show all items & spells that have "heal" in the name
 
 Most options may be abbreviated -
-/flyout i:bandage:c:c:c:15:c:h is the same as /flyout item:bandage:circular:center:center:15:click:hide]]
+/flyout i:bandage:c:c:c:15:c:h is the same as /flyout item:bandage:circular:center:center:15:click:hide
+]]
