@@ -1,5 +1,5 @@
 Lithium 3.0
-- Bug fixes and library updates
+-Bug fixes and library updates
 
  Helium 2.1.1
  - Bug fixes
