@@ -19,11 +19,14 @@ L.FAQ = [[
 Below you will find answers to various questions that may arise as you use Ion. Though please note that not all answers may be found here.
 
 For questions not answered here, please direct them here:
-
-|cff33c7ffhttps://mods.curse.com/addons/wow/ion |r
+|cff33c7ffhttps://mods.curse.com/addons/wow/ion |r or
+|cff33c7ffhttp://www.wowinterface.com/downloads/info10636-Ion.html#comments |r
 
 Further, if you encounter any bugs or missing features, please direct all inquiries here:
-|cff33c7ffhttps://github.com/SLOKnightfall/Ion-Core/issues |r
+|cff33c7ffhttps://github.com/brittyazel/Ion-Core/issues |r
+
+The source code can be found here:
+|cff33c7ffhttps://github.com/brittyazel/Ion-Core |r
 
 Thank you again for using Ion.
 
