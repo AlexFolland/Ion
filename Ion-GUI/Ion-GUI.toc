@@ -1,8 +1,8 @@
 ## Interface: 70300
 ## Title: Ion: GUI
-## Author: Maul
-## X-Credits-Maintainer: SLOKnightfall
-## Version: Lithium 3.0
+## Author: Connor Chenoweth (aka Maul)
+## X-Credits-Maintainer: SLOKnightfall & Soyier
+## Version: Lithium 3.0.2
 ## Notes: GUI for Ion
 ## DefaultState: enabled
 ## Dependencies: Ion

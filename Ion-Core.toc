@@ -2,8 +2,8 @@
 ## Title: Ion
 ## Notes: Ion: Action Bar & Object Mananger
 ## Author: Connor Chenoweth (aka Maul)
-## X-Credits-Maintainer: SLOKnightfall
-## Version: Lithium 3.0
+## X-Credits-Maintainer: SLOKnightfall & Soyier
+## Version: Lithium 3.0.2
 ## DefaultState: enabled
 ## SavedVariables: IonGDB, IonItemCache, IonProfilesDB
 ## SavedVariablesPerCharacter: IonCDB, IonSpec,
