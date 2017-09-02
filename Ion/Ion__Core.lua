@@ -249,6 +249,7 @@ local options = {
 		moreoptions={
 			name = "Options",
 			type = "group",
+			order = 0,
 			args={
 				AnimateIcon = {
 					order = 0,
@@ -289,36 +290,51 @@ local options = {
 				},]]--
 			},
 		},
-		faq = {
-			name = L.FAQ,
-			desc = L.FAQ_LONG,
+
+		changelog = {
+			name = L.CHANGELOG_TITLE,
 			type = "group",
 			order = 1000,
+			args = {
+				line1 = {
+					type = "description",
+					name = L.CHANGELOG,
+				},
+			},
+		},
+
+		faq = {
+			name = L.FAQ_TITLE,
+			desc = L.FAQ_TITLE_LONG,
+			type = "group",
+			order = 1001,
 			args = {
 
 				line1 = {
 					type = "description",
-					name = "|cffffd200" .. L.WHATS_NEW_TITLE .. "|r",
-					order = 1,
+					name = L.FAQ,
 				},
-				line2 = {
-					type = "description",
-					name = L.WHATS_NEW_INFO,
-					order = 2,
-				},
+
 				g1 = {
 					type = "group",
-					name = "|cffffd200" .. L.FAQ_BAR_CONFIGURE .. "|r",
+					name =L.FAQ_BAR_CONFIGURE_TITLE,
 					order = 1,
 					args = {
+
+						line1 = {
+							type = "description",
+							name =L.FAQ_BAR_CONFIGURE,
+							order = 1,
+						},
+
 						g1 = {
 							type = "group",
-							name = "|cffffd200" .. L.FAQ_BAR_CONFIGURE_GENERAL_OPTIONS_TITLE .. "|r",
+							name =L.FAQ_BAR_CONFIGURE_GENERAL_OPTIONS_TITLE,
 							order = 1,
 							args = {
-								line1a = {
+								line1 = {
 								type = "description",
-								name = L.LINE1 ,
+								name = L.FAQ_BAR_CONFIGURE_GENERAL_OPTIONS ,
 								order = 1,
 								},
 							},
@@ -326,12 +342,12 @@ local options = {
 
 						g2 = {
 							type = "group",
-							name = "|cffffd200" .. L.FAQ_BAR_CONFIGURE_BAR_STATES_TITLE .. "|r",
+							name =L.FAQ_BAR_CONFIGURE_BAR_STATES_TITLE,
 							order = 2,
 							args = {
-								line1a = {
+								line1 = {
 								type = "description",
-								name = L.LINE1 ,
+								name = L.FAQ_BAR_CONFIGURE_BAR_STATES ,
 								order = 1,
 								},
 							},
@@ -339,12 +355,12 @@ local options = {
 
 						g3 = {
 							type = "group",
-							name = "|cffffd200" .. L.FAQ_BAR_CONFIGURE_SPELL_TARGET_TITLE .. "|r",
+							name = L.FAQ_BAR_CONFIGURE_SPELL_TARGET_TITLE,
 							order = 3,
 							args = {
-								line1a = {
+								line1 = {
 								type = "description",
-								name = L.LINE1 ,
+								name = L.FAQ_BAR_CONFIGURE_SPELL_TARGET ,
 								order = 1,
 								},
 							},
@@ -352,6 +368,7 @@ local options = {
 					},
 				},
 
+				--[[
 				g2 = {
 					type = "group",
 					name = "|cffffd200" .. L.FAQ_MACRO_EDITOR .. "|r",
@@ -397,10 +414,11 @@ local options = {
 						},
 					},
 				},
+				]]--
 
 				g3 = {
 					type = "group",
-					name = "|cffffd200" .. L.FLYOUT .. "|r",
+					name = L.FLYOUT,
 					order = 3,
 					args = {
 						line1a = {
