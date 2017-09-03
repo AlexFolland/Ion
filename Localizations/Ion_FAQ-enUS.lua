@@ -23,10 +23,10 @@ For questions not answered here, please direct them here:
 |cff33c7ffhttp://www.wowinterface.com/downloads/info10636-Ion.html#comments |r
 
 Further, if you encounter any bugs or missing features, please direct all inquiries here:
-|cff33c7ffhttps://github.com/brittyazel/Ion-Core/issues |r
+|cff33c7ffhttps://github.com/brittyazel/Ion/issues |r
 
 The source code can be found here:
-|cff33c7ffhttps://github.com/brittyazel/Ion-Core |r
+|cff33c7ffhttps://github.com/brittyazel/Ion |r
 
 Thank you again for using Ion.
 

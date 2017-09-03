@@ -1,3 +1,5 @@
+Lithium 3.0.5
+ -Fixing packaging errors and reorganizing the repo
 Lithium 3.0.4
  -Fix Localization issue. Curse was adding in a non-functional set of localizations that was breaking everything. Bad Curse!
 
