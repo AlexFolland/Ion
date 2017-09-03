@@ -337,4 +337,3 @@ L.VPAD = "Vert Pad" -- Needs review
 L.WARLOCK_CASTER = "Normale Gestalt" -- Needs review
 L.XPOS = "X Pos" -- Needs review
 L.YPOS = "Y Pos" -- Needs review
---@end-do-not-package@
