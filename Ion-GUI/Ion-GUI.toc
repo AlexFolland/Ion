@@ -14,10 +14,9 @@
 ## X-Email: trinityui@live.com
 
 Libs\LibStub\LibStub.lua
+Libs\AceLocale-3.0\AceLocale-3.0.lua
 Libs\AceLocale-3.0\AceLocale-3.0.xml
 
-Ion-GUI_Localizations.xml
 
 Ion-GUI.lua
 Ion-GUI.xml
-Ion_Options.lua
