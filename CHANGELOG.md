@@ -1,3 +1,7 @@
+Lithium 3.0.6
+  -Fix issue with curse deleting all Strings
+  -Disable for the time being crowd sourced translations, as they were causing lots and lots of errors. This is something that I really want to get going in a future version, but for now I just need things to work while I clean house. As of right now, only English and German is working. I would love to get more languages translated, and patches are fully welcome over on the github.
+
 Lithium 3.0.5
  -Fixing packaging errors and reorganizing the repo
 Lithium 3.0.4
