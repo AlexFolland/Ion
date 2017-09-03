@@ -1,3 +1,6 @@
+Lithium 3.0.4
+ -Fix Localization issue. Curse was adding in a non-functional set of localizations that was breaking everything. Bad Curse!
+
 Lithium 3.0
 -Bug fixes and library updates
 
