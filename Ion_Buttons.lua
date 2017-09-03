@@ -364,7 +364,7 @@ local function controlOnUpdate(self, elapsed)
 	end
 
 	if (MacroDrag[0]) then
-		local texture_path = GetFileName(MacroDrag.texture)
+		--local texture_path = GetFileName(MacroDrag.texture)
 		--SetCursor(texture_path)
 	end
 end
@@ -498,7 +498,7 @@ local function checkCursor(self, button)
 			ION:ToggleButtonGrid(nil, true)
 			DeleteMacro("IonTemp")
 		else
-			local texture_path =GetFileName(MacroDrag.texture)
+			--local texture_path =GetFileName(MacroDrag.texture)
 			--SetCursor(texture_path)
 
 			ION:ToggleButtonGrid(true)
@@ -2022,7 +2022,7 @@ function BUTTON:MACRO_PickUpMacro()
 			end
 
 			wipe(currMacro)
-			local texture_path =GetFileName(MacroDrag.texture)
+			--local texture_path =GetFileName(MacroDrag.texture)
 			macroFuss(MacroDrag)
 			--SetCursor(texture_path)
 

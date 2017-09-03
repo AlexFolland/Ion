@@ -2501,7 +2501,7 @@ function ION:MacroEditorUpdate()
 			else
 				IBTNE.macroicon.icon:SetTexture(data.macro_Icon)
 			end
-print(data.macro_Name)
+			--print(data.macro_Name)
 			IBTNE.nameedit:SetText(data.macro_Name)
 			IBTNE.noteedit:SetText(data.macro_Note)
 			IBTNE.usenote:SetChecked(data.macro_UseNote)
@@ -2720,14 +2720,17 @@ local function updateIconList()
 
 	for index, icon in ipairs(ICONS) do
 		if (search) then
-			local icon_path
+
+			--I don't know what this does or why it is important, but we want to avoid GetFileName at all costs, and this doesn't appear to break anything.
+			--[[local icon_path
 			if type(icon) == "number" then
 				 icon_path = GetFileName(icon)
 			else
 				icon_path = icon
-			end
-			--if (icon:lower():find(search:lower()) or index == 1) then
-			if (icon_path:lower():find(search:lower()) or index == 1) then
+			end]]
+
+			if (icon:lower():find(search:lower()) or index == 1) then
+			--if (icon_path:lower():find(search:lower()) or index == 1) then
 				tinsert(IconList, icon)
 			end
 		else
