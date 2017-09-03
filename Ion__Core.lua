@@ -17,6 +17,8 @@ local type = _G.type
 local string = _G.string
 local table = _G.table
 
+local L = LibStub("AceLocale-3.0"):GetLocale("Ion") --make sure this has translations
+
 
 -------------------------------------------------------------------------------
 -- AddOn namespace.
@@ -131,8 +133,6 @@ IonCDB = {
 IonSpec = {cSpec = 1}
 
 IonItemCache = {}
-
-local L = LibStub("AceLocale-3.0"):GetLocale("Ion")
 
 local ION, BAR = Ion
 
