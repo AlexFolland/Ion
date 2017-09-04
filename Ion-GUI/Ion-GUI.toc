@@ -2,7 +2,7 @@
 ## Title: Ion: GUI
 ## Author: Connor Chenoweth (aka Maul)
 ## X-Credits-Maintainer: SLOKnightfall & Soyier
-## Version: Lithium 3.0.2
+## Version: Lithium 3.0.8
 ## Notes: GUI for Ion
 ## DefaultState: enabled
 ## Dependencies: Ion
@@ -17,6 +17,7 @@ Libs\LibStub\LibStub.lua
 Libs\AceLocale-3.0\AceLocale-3.0.lua
 Libs\AceLocale-3.0\AceLocale-3.0.xml
 
-
 Ion-GUI.lua
 Ion-GUI.xml
+
+
