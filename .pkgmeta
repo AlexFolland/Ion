@@ -4,6 +4,8 @@ manual-changelog:
     filename: CHANGELOG.md
     markup-type: markdown
 
+#this will eventually be necessary for curse to automagically pull in all the necessary and up-to-date libraries
+#for wowinterface, I should just upload the versions that curse spits out, which means I need to plug in all of curse's feature sets.
 #externals:
     #Ion/Libs/AceAddon-3.0: https://repos.wowace.com/wow/ace3/trunk/AceAddon-3.0
     #Ion/Libs/AceConfig-3.0: https://repos.wowace.com/wow/ace3/trunk/AceConfig-3.0
@@ -26,8 +28,7 @@ ignore:
     #- Ion-GUI/Libs/
 
 move-folders:
-    Ion-Core/Ion: Ion
-    Ion-Core/Ion-GUI: Ion-GUI
+    Ion/Ion-GUI: Ion-GUI
 
 optional-dependencies:
     - ion-bag-bar

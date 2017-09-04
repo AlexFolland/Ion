@@ -3,7 +3,7 @@
 ## Notes: Ion: Action Bar & Object Mananger
 ## Author: Connor Chenoweth (aka Maul)
 ## X-Credits-Maintainer: SLOKnightfall & Soyier
-## Version: Lithium 3.0.2
+## Version: Lithium 3.0.8
 ## DefaultState: enabled
 ## SavedVariables: IonGDB, IonItemCache, IonProfilesDB
 ## SavedVariablesPerCharacter: IonCDB, IonSpec,
@@ -16,7 +16,8 @@
 Libs\LibStub\LibStub.lua
 Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
 Libs\AceLocale-3.0\AceLocale-3.0.xml
-Libs\LibDataBroker-1.1\LibDataBroker.lua
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+
 
 Libs\AceAddon-3.0\AceAddon-3.0.xml
 Libs\AceGUI-3.0\AceGUI-3.0.xml
@@ -27,7 +28,7 @@ Libs\AceEvent-3.0\AceEvent-3.0.xml
 
 Ion_Localizations.xml
 
-Ion__Core.lua
+Ion.lua
 
 Ion_States.lua
 Ion_Buttons.lua
@@ -43,4 +44,4 @@ Ion_ZoneAbilityBar.lua
 
 Ion-Broker.lua
 
-Ion__Core.xml
+Ion.xml

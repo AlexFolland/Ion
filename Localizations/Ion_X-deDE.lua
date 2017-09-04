@@ -8,10 +8,10 @@
 local AddOnFolderName, private = ...
 -- See http://wow.curseforge.com/addons/ion-status-bars/localization/
 local L = _G.LibStub("AceLocale-3.0"):NewLocale("Ion", "deDE", false)
-if not L then return end 
+if not L then return end
 --@localization(locale="deDE", format="lua_additive_table", handle-unlocalized="comment")@
 
---@do-not-package@
+
 L.DEFAULT = "Default"
 
 L.ACTION = "Aktionsinformationen" -- Needs review
@@ -337,4 +337,3 @@ L.VPAD = "Vert Pad" -- Needs review
 L.WARLOCK_CASTER = "Normale Gestalt" -- Needs review
 L.XPOS = "X Pos" -- Needs review
 L.YPOS = "Y Pos" -- Needs review
---@end-do-not-package@

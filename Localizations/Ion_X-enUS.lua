@@ -10,7 +10,6 @@ local L = _G.LibStub("AceLocale-3.0"):NewLocale("Ion", "enUS", true)
 if not L then return end
 --@localization(locale="enUS", format="lua_additive_table", handle-unlocalized="comment")@
 
---@do-not-package@
 L.ION = "Ion"
 
 L.DEFAULT = "Default"
@@ -478,4 +477,52 @@ L.SPELL_TARGETING_SELF_CAST_RIGHTCLICK_SELECT = "Select the Self-Cast Modifier"
 L.SPELL_TARGETING_MODIFIER_NONE_REMINDER = "\"None\" as modifier for Self & Focus Casting means its disabled. \nFor Mouse-Over Casting it means its always active, and no modifier is required."
 
 L.ZONEABILITY_BAR_BORDER = "Show Bar Border"
---@end-do-not-package@
+
+L.XP_BAR = "XP Bar"
+L.REP_BAR = "Rep Bar"
+L.CAST_BAR = "Cast Bar"
+L.MIRROR_BAR = "Mirror Bar"
+L.STATUSBAR_BAR = "Undefined Status Bar"
+
+L.WIDTH ="Width"
+L.HEIGHT = "Height"
+L.BARFILL = "Bar Fill"
+L.BORDER = "Border"
+L.ORIENT = "Orientation"
+
+L.CENTER_TEXT = "Center Text"
+L.LEFT_TEXT = "Left Text"
+L.RIGHT_TEXT = "Right Text"
+L.MOUSE_TEXT = "Mouseover Text"
+L.TOOLTIP_TEXT = "Tooltip Text"
+
+L.UNIT_WATCH = "Unit"
+L.CAST_ICON = "Cast Icon"
+
+L.TEXT_BLANK = "None"
+L.TEXT_SPELL = "Spell"
+L.TEXT_TIMER = "Timer"
+L.TEXT_CURRNEXT = "Current/Next"
+L.TEXT_RESTED = "Rested Levels"
+L.TEXT_PERCENT = "Percent"
+L.TEXT_BUBBLES = "Bubbles"
+L.TEXT_FACTION = "Faction & Standing"
+L.TEXT_TYPE = "Type"
+
+L.AUTO_SELECT = "Auto Select"
+
+L.BARFILL_DEFAULT = "Default"
+L.BARFILL_CONTRAST = "Contrast"
+L.BARFILL_CARPAINT = "Carpaint"
+L.BARFILL_GEL = "Gel"
+L.BARFILL_GLASSED = "Glassed"
+L.BARFILL_SOFT = "Soft"
+L.BARFILL_VELVET = "Velvet"
+
+L.BORDER_TOOLTIP = "Tooltip"
+L.BORDER_SLIDER = "Slider"
+L.BORDER_DIALOG = "Dialog"
+L.BORDER_NONE = "None"
+
+L.ORIENT_HORIZ = "Horizontal"
+L.ORIENT_VERT = "Vertical"
